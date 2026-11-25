@@ -7,15 +7,15 @@ import type {
 } from '../types/game';
 
 /**
- * LEVEL 1 DATASET — Subtopik 2.2: Pengendalian Makanan (Kebersihan Diri & Pakaian)
+ * LEVEL 1 DATASET — Subtopic 2.2: Food Handling (Personal Hygiene & Attire)
  * 6 Staff Profiles: 3 Compliant (pass), 3 Non-Compliant (reject)
  */
 export const level1Staff: StaffProfile[] = [
   {
     id: 'staff-1',
-    staffCode: 'PM-0142',
-    name: 'Amirul Hakim bin Azizi',
-    role: 'Cef Stesen Memasak',
+    staffCode: 'FH-0142',
+    name: 'Amirul Hakim Azizi',
+    role: 'Hot Line Station Chef',
     subtopic: '2.2',
     category: 'pakaian_pengendali',
     avatar: {
@@ -28,7 +28,7 @@ export const level1Staff: StaffProfile[] = [
     apronClean: true,
     hairnet: true,
     jewelry: false,
-    jewelryDetail: 'Tiada barang kemas',
+    jewelryDetail: 'No jewelry worn',
     gloveStatus: 'clean',
     footwear: 'closed_shoes',
     typhoidVaccineValid: true,
@@ -36,24 +36,24 @@ export const level1Staff: StaffProfile[] = [
     slpmCertValid: true,
     hasOpenWound: false,
     cutsCovered: true,
-    healthNotes: 'Sihat sepenuhnya. Tiada demam, batuk atau luka terbuka.',
+    healthNotes: 'Fit for duty. No fever, cough, skin infection, or open wounds.',
     correctDecision: 'pass',
     violationOptions: [
-      'Tiada penutup kepala (hairnet)',
-      'Suntikan Tifoid telah tamat tempoh',
-      'Memakai barang kemas semasa bekerja',
+      'Missing hairnet / head covering',
+      'Expired Typhoid vaccination card',
+      'Wearing jewelry while handling food',
     ],
     correctViolationIndex: -1,
     explanation:
-      'Amirul mematuhi sepenuhnya piawaian pengendali makanan KKM: memakai apron bersih, penutup kepala, kasut bertutup, tiada barang kemas, dan memiliki Suntikan Tifoid serta sijil SLPM yang sah.',
+      'Amirul meets all MOH food handler standards: clean light-colored apron, proper hairnet, closed non-slip shoes, zero jewelry, and valid Typhoid vaccination plus Food Handler Training (SLPM) certification.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.2 • Peraturan 30, 31 & 32, Peraturan-Peraturan Kebersihan Makanan 2009',
+      'KSSM SRT Form 5 Subtopic 2.2 • Regulations 30, 31 & 32, Food Hygiene Regulations 2009',
   },
   {
     id: 'staff-2',
-    staffCode: 'PM-0187',
-    name: 'Nurul Aina binti Roslan',
-    role: 'Pembantu Penyediaan Bahan',
+    staffCode: 'FH-0187',
+    name: 'Nurul Aina Roslan',
+    role: 'Food Prep Assistant',
     subtopic: '2.2',
     category: 'pakaian_pengendali',
     avatar: {
@@ -67,7 +67,7 @@ export const level1Staff: StaffProfile[] = [
     apronClean: true,
     hairnet: false,
     jewelry: true,
-    jewelryDetail: 'Memakai cincin batu & gelang tangan emas',
+    jewelryDetail: 'Wearing gemstone ring & gold bangle',
     gloveStatus: 'none',
     footwear: 'closed_shoes',
     typhoidVaccineValid: true,
@@ -75,24 +75,24 @@ export const level1Staff: StaffProfile[] = [
     slpmCertValid: true,
     hasOpenWound: false,
     cutsCovered: true,
-    healthNotes: 'Sihat. Tiada gejala penyakit berjangkit.',
+    healthNotes: 'Healthy. No symptoms of contagious illness.',
     correctDecision: 'reject',
     violationOptions: [
-      'Tiada penutup kepala & memakai barang kemas (cincin/gelang)',
-      'Suntikan Tifoid telah tamat tempoh',
-      'Memakai selipar terbuka di dalam dapur',
+      'Missing hairnet & wearing jewelry (ring and bangle)',
+      'Expired Typhoid vaccination card',
+      'Wearing open-toe slippers inside the kitchen',
     ],
     correctViolationIndex: 0,
     explanation:
-      'Nurul Aina melanggar etika pakaian dan kebersihan diri kerana tidak memakai penutup kepala (risiko rambut gugur ke dalam makanan) serta memakai cincin dan gelang yang memerangkap bakteria dan berisiko terjatuh ke dalam makanan.',
+      'Nurul Aina violates attire and personal hygiene standards by not wearing a hairnet (risk of hair falling into food) and wearing a ring and bangle, which trap bacteria and risk physical contamination.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.2 • Peraturan 32 & 33, Peraturan-Peraturan Kebersihan Makanan 2009',
+      'KSSM SRT Form 5 Subtopic 2.2 • Regulations 32 & 33, Food Hygiene Regulations 2009',
   },
   {
     id: 'staff-3',
-    staffCode: 'PM-0205',
-    name: 'Faizal bin Kamaruddin',
-    role: 'Tukang Masak Sif Pagi',
+    staffCode: 'FH-0205',
+    name: 'Faizal Kamaruddin',
+    role: 'Morning Shift Cook',
     subtopic: '2.2',
     category: 'kebersihan_diri',
     avatar: {
@@ -105,7 +105,7 @@ export const level1Staff: StaffProfile[] = [
     apronClean: true,
     hairnet: true,
     jewelry: false,
-    jewelryDetail: 'Tiada barang kemas',
+    jewelryDetail: 'No jewelry worn',
     gloveStatus: 'clean',
     footwear: 'slippers',
     typhoidVaccineValid: false,
@@ -113,24 +113,25 @@ export const level1Staff: StaffProfile[] = [
     slpmCertValid: true,
     hasOpenWound: false,
     cutsCovered: true,
-    healthNotes: 'Kad Suntikan Tifoid tamat tempoh 45 hari lalu. Memakai selipar getah.',
+    healthNotes:
+      'Typhoid vaccination expired 45 days ago. Wearing outdoor rubber slippers.',
     correctDecision: 'reject',
     violationOptions: [
-      'Luka terbuka di jari tanpa plaster kalis air',
-      'Suntikan Tifoid tamat tempoh & memakai selipar terbuka',
-      'Tidak memakai apron semasa mengendalikan makanan',
+      'Uncovered open wound on finger',
+      'Expired Typhoid vaccination & wearing open slippers',
+      'Not wearing an apron while preparing food',
     ],
     correctViolationIndex: 1,
     explanation:
-      'Pengendali makanan wajib mendapatkan Suntikan Tifoid yang sah (diperbaharui setiap 3 tahun) bagi mencegah penularan demam kepialu (Salmonella typhi). Selain itu, kasut bertutup dan kalis licin wajib dipakai untuk keselamatan serta kebersihan dapur.',
+      'All food handlers must hold a valid Typhoid vaccination (renewed every 3 years) to prevent Salmonella typhi transmission. Closed, slip-resistant footwear is also mandatory in commercial kitchens.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.2 • Peraturan 31 (Suntikan Tifoid) & Peraturan 32 (Kasut Bertutup), PPKM 2009',
+      'KSSM SRT Form 5 Subtopic 2.2 • Regulation 31 (Typhoid) & Regulation 32 (Footwear), FHR 2009',
   },
   {
     id: 'staff-4',
-    staffCode: 'PM-0221',
-    name: 'Kavitha a/p Subramaniam',
-    role: 'Pembantu Pastri & Pencuci Mulut',
+    staffCode: 'FH-0221',
+    name: 'Kavitha Subramaniam',
+    role: 'Pastry & Dessert Assistant',
     subtopic: '2.2',
     category: 'kebersihan_diri',
     avatar: {
@@ -144,7 +145,7 @@ export const level1Staff: StaffProfile[] = [
     apronClean: true,
     hairnet: true,
     jewelry: false,
-    jewelryDetail: 'Tiada barang kemas, kuku pendek & bersih',
+    jewelryDetail: 'No jewelry, short & clean fingernails',
     gloveStatus: 'clean',
     footwear: 'closed_shoes',
     typhoidVaccineValid: true,
@@ -153,24 +154,24 @@ export const level1Staff: StaffProfile[] = [
     hasOpenWound: true,
     cutsCovered: true,
     healthNotes:
-      'Luka calar kecil pada jari telunjuk telah dibalut kemas dengan plaster kalis air biru dan dilindungi sarung tangan pakai buang bersih.',
+      'Minor scratch on index finger is securely sealed with a bright blue waterproof plaster and covered with a clean disposable glove.',
     correctDecision: 'pass',
     violationOptions: [
-      'Luka tidak dibalut dengan plaster kalis air',
-      'Sarung tangan kotor dan koyak',
-      'Tiada sijil Latihan Pengendali Makanan (SLPM)',
+      'Open wound not covered with waterproof plaster',
+      'Dirty and torn disposable gloves',
+      'Missing Food Handler Training (SLPM) certificate',
     ],
     correctViolationIndex: -1,
     explanation:
-      'Kavitha layak masuk dapur! Luka kecil yang dibalut dengan plaster kalis air berwarna terang (biru) serta dilindungi sarung tangan bersih mematuhi prosedur keselamatan makanan KKM bagi mengelakkan pencemaran biologi.',
+      'Kavitha is cleared for kitchen duty! A minor cut properly sealed with a brightly colored (blue) waterproof bandage and protected with a clean disposable glove fully complies with MOH food safety rules.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.2 • Peraturan 33 (Penjagaan Luka & Kebersihan Diri), PPKM 2009',
+      'KSSM SRT Form 5 Subtopic 2.2 • Regulation 33 (Wound Protection & Personal Hygiene), FHR 2009',
   },
   {
     id: 'staff-5',
-    staffCode: 'PM-0249',
+    staffCode: 'FH-0249',
     name: 'Danial Chong Wei Liang',
-    role: 'Pengendali Stesen Potong Daging',
+    role: 'Butchery & Prep Handler',
     subtopic: '2.2',
     category: 'kebersihan_diri',
     avatar: {
@@ -183,7 +184,7 @@ export const level1Staff: StaffProfile[] = [
     apronClean: false,
     hairnet: true,
     jewelry: false,
-    jewelryDetail: 'Tiada barang kemas',
+    jewelryDetail: 'No jewelry worn',
     gloveStatus: 'dirty',
     footwear: 'closed_shoes',
     typhoidVaccineValid: true,
@@ -192,24 +193,24 @@ export const level1Staff: StaffProfile[] = [
     hasOpenWound: true,
     cutsCovered: false,
     healthNotes:
-      'Terdapat luka terbuka tanpa balutan plaster di ibu jari kanan. Apron berlumuran kesan minyak dan sarung tangan telah kotor.',
+      'Uncovered open cut on right thumb without a plaster. Apron is heavily grease-stained and disposable gloves are visibly soiled.',
     correctDecision: 'reject',
     violationOptions: [
-      'Suntikan Tifoid tamat tempoh',
-      'Luka terbuka tanpa plaster kalis air, sarung tangan & apron kotor',
-      'Memakai cincin dan gelang tangan',
+      'Expired Typhoid vaccination card',
+      'Uncovered open wound, soiled gloves & stained apron',
+      'Wearing rings and bracelets',
     ],
     correctViolationIndex: 1,
     explanation:
-      'Luka terbuka yang tidak dibalut membawa bakteria Staphylococcus aureus terus ke dalam makanan. Apron yang kotor dan sarung tangan pakai buang yang tidak ditukar pula menjadi punca pencemaran silang.',
+      'An uncovered wound can transfer Staphylococcus aureus directly into food. A grease-stained apron and unchanged soiled disposable gloves also pose a serious cross-contamination risk.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.2 • Peraturan 32 & 33, Peraturan-Peraturan Kebersihan Makanan 2009',
+      'KSSM SRT Form 5 Subtopic 2.2 • Regulations 32 & 33, Food Hygiene Regulations 2009',
   },
   {
     id: 'staff-6',
-    staffCode: 'PM-0274',
-    name: 'Siti Hajar binti Mohamad',
-    role: 'Penyelia Hidangan & Pembungkusan',
+    staffCode: 'FH-0274',
+    name: 'Siti Hajar Mohamad',
+    role: 'Plating & Packaging Supervisor',
     subtopic: '2.2',
     category: 'pakaian_pengendali',
     avatar: {
@@ -223,7 +224,7 @@ export const level1Staff: StaffProfile[] = [
     apronClean: true,
     hairnet: true,
     jewelry: false,
-    jewelryDetail: 'Tiada barang kemas atau jam tangan',
+    jewelryDetail: 'No jewelry or wristwatch',
     gloveStatus: 'clean',
     footwear: 'closed_shoes',
     typhoidVaccineValid: true,
@@ -232,23 +233,23 @@ export const level1Staff: StaffProfile[] = [
     hasOpenWound: false,
     cutsCovered: true,
     healthNotes:
-      'Tudung diikat kemas bersama penutup kepala, apron cerah bersih, kasut bertutup kalis gelincir, dan kad kesihatan lengkap.',
+      'Headscarf tucked neatly with hairnet, clean bright apron, closed non-slip shoes, and up-to-date health records.',
     correctDecision: 'pass',
     violationOptions: [
-      'Memakai selipar terbuka',
-      'Apron kotor dan tidak bertukar',
-      'Suntikan Tifoid tamat tempoh',
+      'Wearing open-toe slippers',
+      'Dirty, unwashed apron',
+      'Expired Typhoid vaccination card',
     ],
     correctViolationIndex: -1,
     explanation:
-      'Siti Hajar memenuhi semua kriteria kebersihan pengendali makanan KKM. Pakaian lengkap berwarna cerah memudahkan pengesanan kekotoran, dan ketiadaan barang kemas mengelakkan pencemaran fizikal dan mikrob.',
+      'Siti Hajar meets every MOH food handler hygiene requirement. Clean light-colored attire makes dirt easy to spot, and wearing zero jewelry prevents physical and microbial contamination.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.2 • Peraturan 30, 31 & 32, Peraturan-Peraturan Kebersihan Makanan 2009',
+      'KSSM SRT Form 5 Subtopic 2.2 • Regulations 30, 31 & 32, Food Hygiene Regulations 2009',
   },
 ];
 
 /**
- * LEVEL 2 DATASET — Subtopik 2.1 (Amalan Kebersihan Dapur) & 2.2 (Pengendalian)
+ * LEVEL 2 DATASET — Subtopic 2.1 (Kitchen Hygiene) & 2.2 (Food Handling)
  * 8 Interactive Hotspots across 4 Commercial Kitchen Zones (6 violations, 2 compliant)
  */
 export const level2KitchenHotspots: KitchenHotspot[] = [
@@ -258,25 +259,25 @@ export const level2KitchenHotspots: KitchenHotspot[] = [
     x: 15,
     y: 66,
     zone: 'cuci',
-    zoneLabel: 'Zon Cuci',
-    title: 'Perangkap Gris Tersumbat & Berbau',
+    zoneLabel: 'Washing Zone',
+    title: 'Clogged & Foul-Smelling Grease Trap',
     description:
-      'Perangkap gris (grease trap) di bawah singki basuhan penuh dengan lapisan minyak beku, sisa makanan mendap, dan air basuhan bertakung.',
+      'The under-sink grease trap is overflowing with congealed fat, trapped food debris, and stagnant wastewater.',
     subtopic: '2.1',
     category: 'sanitasi_dapur',
     isViolation: true,
     question:
-      'Apakah risiko utama dan tindakan pembetulan bagi perangkap gris yang tersumbat ini?',
+      'What is the main risk and proper corrective action for this clogged grease trap?',
     options: [
-      'Menarik perosak (lipas/tikus) & saluran tersumbat — wajib dibersihkan dan diselenggara secara berkala.',
-      'Hanya mencurah air sejuk supaya lemak membeku dan mudah mengalir ke longkang awam.',
-      'Tiada kesalahan sanitasi selagi sinki bahagian atas masih kelihatan bersih.',
+      'Attracts pests (cockroaches/rodents) & blocks drainage — must be cleaned and maintained on a strict daily schedule.',
+      'Pour cold water down the drain so the grease hardens and washes into the public sewer.',
+      'No sanitation violation as long as the upper sink basin looks clean.',
     ],
     correctOptionIndex: 0,
     explanation:
-      'Perangkap gris yang tidak diselenggara menyebabkan pengumpulan lemak tepu, bau busuk, pembiakan bakteria serta menarik haiwan perosak seperti lipas dan tikus. Ia wajib dibersihkan setiap hari atau mengikut jadual penyelenggaraan KKM.',
+      'An unmaintained grease trap accumulates rancid fats, causes foul odors, breeds bacteria, and attracts pests such as cockroaches and rodents. It must be cleaned and serviced regularly per MOH guidelines.',
     textbookReference:
-      'KSSM SRT T5 Subtopik 2.1 • Pengurusan Sistem Saliran & Perangkap Gris Premis Makanan',
+      'KSSM SRT Form 5 Subtopic 2.1 • Drainage Systems & Grease Trap Maintenance',
   },
   {
     id: 'hs-2',
@@ -284,25 +285,24 @@ export const level2KitchenHotspots: KitchenHotspot[] = [
     x: 24,
     y: 34,
     zone: 'cuci',
-    zoneLabel: 'Zon Cuci',
-    title: 'Singki Cuci Tangan Khusus Pengendali',
+    zoneLabel: 'Washing Zone',
+    title: 'Dedicated Staff Handwash Basin',
     description:
-      'Singki cuci tangan berasingan daripada singki basuh bahan mentah, dilengkapi sabun cecair antiseptik, tisu pakai buang, dan poster 7 langkah cuci tangan.',
+      'A separate handwashing sink distinct from the food-prep sink, stocked with liquid antibacterial soap, disposable paper towels, and a 7-step handwashing guide.',
     subtopic: '2.2',
     category: 'kebersihan_diri',
     isViolation: false,
-    question:
-      'Bagaimanakah penilaian anda terhadap kemudahan singki cuci tangan ini?',
+    question: 'How should you evaluate this handwashing station?',
     options: [
-      'Pelanggaran — tisu pakai buang perlu diganti dengan tuala kain guna semula.',
-      'Mematuhi piawaian KKM — singki cuci tangan khusus lengkap sabun cecair & pengering pakai buang.',
-      'Pelanggaran — singki cuci tangan mesti digabungkan dengan singki basuh ayam mentah.',
+      'Violation — disposable paper towels should be replaced with a shared cloth towel.',
+      'Compliant with MOH standards — dedicated handwash sink equipped with liquid soap and disposable towels.',
+      'Violation — handwashing should share the same basin used to rinse raw poultry.',
     ],
     correctOptionIndex: 1,
     explanation:
-      'Tepat sekali! Premis makanan wajib menyediakan singki cuci tangan khusus yang berasingan daripada singki membasuh bahan mentah, lengkap dengan sabun cecair dan tisu pakai buang (elakkan tuala kain kongsi yang membiakkan bakteria).',
+      'Correct! Food premises must provide a dedicated handwashing basin separate from raw-food washing sinks, supplied with liquid soap and single-use paper towels (avoiding shared cloth towels that harbor bacteria).',
     textbookReference:
-      'KSSM SRT T5 Subtopik 2.2 • Kemudahan Mencuci Tangan & Kebersihan Pengendali Makanan',
+      'KSSM SRT Form 5 Subtopic 2.2 • Handwashing Facilities & Food Handler Hygiene',
   },
   {
     id: 'hs-3',
@@ -310,25 +310,24 @@ export const level2KitchenHotspots: KitchenHotspot[] = [
     x: 42,
     y: 48,
     zone: 'penyediaan',
-    zoneLabel: 'Zon Penyediaan',
-    title: 'Ayam Mentah Bersebelahan Nasi Masak',
+    zoneLabel: 'Prep Zone',
+    title: 'Raw Chicken Next to Cooked Rice',
     description:
-      'Bekas ayam mentah yang berair diletakkan tepat di sebelah dulang nasi putih yang sudah dimasak tanpa penutup di atas meja penyediaan yang sama.',
+      'An open tray of raw chicken dripping liquid sits immediately beside an uncovered tray of cooked steamed rice on the same prep counter.',
     subtopic: '2.1',
     category: 'sanitasi_dapur',
     isViolation: true,
-    question:
-      'Apakah jenis pelanggaran sanitasi yang berlaku pada meja penyediaan ini?',
+    question: 'What sanitation violation is occurring on this prep counter?',
     options: [
-      'Pencemaran fizikal akibat suhu bilik yang terlalu rendah.',
-      'Pencemaran silang (cross-contamination) antara makanan mentah dan makanan siap dimakan — perlu diasingkan segera.',
-      'Tiada kesalahan kerana kedua-duanya akan dihidangkan dalam masa 30 minit.',
+      'Physical contamination caused by low room temperature.',
+      'Cross-contamination risk between raw meat and ready-to-eat cooked food — must be strictly separated and covered.',
+      'No violation because both items will be served within 30 minutes.',
     ],
     correctOptionIndex: 1,
     explanation:
-      'Titisan air ayam mentah boleh mengandungi bakteria patogen seperti Salmonella dan Campylobacter yang mencemari nasi siap dimakan. Makanan mentah dan makanan masak mesti sentiasa diasingkan dan bertutup rapat.',
+      'Raw poultry juices often carry pathogens such as Salmonella and Campylobacter, which can contaminate ready-to-eat rice. Raw ingredients and cooked food must always be separated and tightly covered.',
     textbookReference:
-      'KSSM SRT T5 Subtopik 2.1 • Pencegahan Pencemaran Silang dalam Penyediaan Makanan',
+      'KSSM SRT Form 5 Subtopic 2.1 • Preventing Cross-Contamination in Food Prep',
   },
   {
     id: 'hs-4',
@@ -336,25 +335,25 @@ export const level2KitchenHotspots: KitchenHotspot[] = [
     x: 52,
     y: 65,
     zone: 'penyediaan',
-    zoneLabel: 'Zon Penyediaan',
-    title: 'Papan Pemotong Kayu Retak & Berkulat',
+    zoneLabel: 'Prep Zone',
+    title: 'Cracked & Moldy Wooden Cutting Board',
     description:
-      'Papan pemotong kayu mempunyai rekahan dalam berwarna kehitaman dan digunakan secara bergilir untuk memotong daging mentah serta ulam-ulaman.',
+      'A deeply cracked wooden chopping board shows dark mold lines and is used interchangeably for raw meat and fresh salad vegetables.',
     subtopic: '2.1',
     category: 'sanitasi_dapur',
     isViolation: true,
     question:
-      'Apakah tindakan pembetulan terbaik mengikut amalan sanitasi dapur KKM?',
+      'What is the best corrective action according to MOH kitchen sanitation standards?',
     options: [
-      'Bilas dengan air paip biasa dan jemur di luar dapur selama 10 minit.',
-      'Buang papan retak dan gantikan dengan papan pemotong berkod warna (cth: merah untuk daging mentah, hijau untuk sayur).',
-      'Terbalikkan permukaan papan supaya bahagian retak berada di bawah.',
+      'Rinse with cold tap water and leave it in the sun for 10 minutes.',
+      'Discard the cracked board and replace it with color-coded polyethylene boards (e.g., red for raw meat, green for vegetables).',
+      'Flip the cutting board over so the cracked side faces downward.',
     ],
     correctOptionIndex: 1,
     explanation:
-      'Rekahan pada papan pemotong kayu memerangkap kelembapan, sisa daging dan bakteria yang sukar disanitasi. Gunakan papan pemotong polietilena berkod warna berasingan untuk bahan mentah dan bahan sedia dimakan.',
+      'Deep cracks in wooden cutting boards trap moisture, meat juices, and bacteria that cannot be sanitized effectively. Commercial kitchens should use separate color-coded polyethylene cutting boards for raw and ready-to-eat items.',
     textbookReference:
-      'KSSM SRT T5 Subtopik 2.1 • Pemilihan & Penjagaan Peralatan Dapur (Kod Warna Papan Pemotong)',
+      'KSSM SRT Form 5 Subtopic 2.1 • Utensil Care & Color-Coded Cutting Boards',
   },
   {
     id: 'hs-5',
@@ -362,25 +361,25 @@ export const level2KitchenHotspots: KitchenHotspot[] = [
     x: 68,
     y: 25,
     zone: 'memasak',
-    zoneLabel: 'Zon Memasak',
-    title: 'Hud Penyedut Asap Berminyak & Menitis',
+    zoneLabel: 'Cooking Zone',
+    title: 'Grease-Caked & Dripping Exhaust Hood',
     description:
-      'Penapis hud penyedut asap (exhaust hood) di atas dapur gas dilitupi lapisan minyak hitam melekit yang hampir menitis ke dalam periuk sup.',
+      'The exhaust hood filters above the gas range are coated in thick black grease that is starting to drip toward an open soup pot below.',
     subtopic: '2.1',
     category: 'sanitasi_dapur',
     isViolation: true,
     question:
-      'Mengapakah hud penyedut asap yang kotor dianggap pelanggaran serius di dapur komersial?',
+      'Why is an uncleaned exhaust hood considered a serious commercial kitchen violation?',
     options: [
-      'Minyak kotor berisiko menitis mencemari makanan di bawahnya serta menjadi bahaya kebakaran dapur.',
-      'Ia hanya menjejaskan estetika dapur dan tidak memberi kesan kepada keselamatan makanan.',
-      'Lapisan minyak membantu menapis wap air daripada masuk ke dalam cerobong.',
+      'Dirty grease can drip into cooking food (contamination) and poses a major kitchen fire hazard.',
+      'It only affects appearance and has no impact on food safety.',
+      'A layer of grease helps trap steam from entering the ventilation duct.',
     ],
     correctOptionIndex: 0,
     explanation:
-      'Hud penyedut asap yang tidak dicuci menyebabkan titisan gris teroksida jatuh ke dalam makanan (pencemaran kimia/fizikal), melemahkan pengudaraan, dan meningkatkan risiko kebakaran minyak di dapur.',
+      'Accumulated grease in exhaust hoods can drip oxidized oil directly into food (chemical/physical contamination), reduce ventilation efficiency, and create a severe fire hazard above open flames.',
     textbookReference:
-      'KSSM SRT T5 Subtopik 2.1 • Kebersihan Ruang Kerja, Pengudaraan & Keselamatan Dapur',
+      'KSSM SRT Form 5 Subtopic 2.1 • Workspace Cleanliness, Ventilation & Kitchen Safety',
   },
   {
     id: 'hs-6',
@@ -388,25 +387,25 @@ export const level2KitchenHotspots: KitchenHotspot[] = [
     x: 75,
     y: 54,
     zone: 'memasak',
-    zoneLabel: 'Zon Memasak',
-    title: 'Pengendali Merasa Kuah Guna Senduk Masak',
+    zoneLabel: 'Cooking Zone',
+    title: 'Chef Tasting Curry Directly From Cooking Ladle',
     description:
-      'Tukang masak menyedok kuah kari menggunakan senduk memasak utama, merasanya terus dengan mulut, lalu mencelup semula senduk itu ke dalam periuk.',
+      'A cook scoops curry with the main stirring ladle, tastes directly from it, and dips the same ladle back into the pot.',
     subtopic: '2.2',
     category: 'kebersihan_diri',
     isViolation: true,
     question:
-      'Apakah kaedah merasa makanan yang betul mengikut etika pengendalian makanan?',
+      'What is the hygienic method for tasting food during cooking?',
     options: [
-      'Tiup kuah pada senduk utama terlebih dahulu sebelum merasanya supaya bakteria mati.',
-      'Gunakan dua sudu berasingan (tuang dari senduk masak ke sudu rasa bersih yang dicuci selepas setiap rasa).',
-      'Benarkan tindakan tersebut kerana kuah sedang mendidih pada suhu tinggi.',
+      'Blow on the main ladle first to cool it down and kill germs before tasting.',
+      'Use the two-spoon method (transfer a small sample to a clean tasting spoon and wash it after each taste).',
+      'Allow it because boiling curry instantly kills all mouth bacteria.',
     ],
     correctOptionIndex: 1,
     explanation:
-      'Mencelup semula sudu yang terkena air liur ke dalam masakan memindahkan mikroorganisma daripada mulut ke seluruh hidangan. Sentiasa gunakan kaedah dua sudu atau sudu pakai buang yang bersih.',
+      'Dipping a saliva-contaminated ladle back into a pot transfers oral bacteria throughout the entire dish. Always use the two-spoon method or a clean single-use spoon for every taste test.',
     textbookReference:
-      'KSSM SRT T5 Subtopik 2.2 • Amalan Baik Pengendali Makanan Semasa Memasak',
+      'KSSM SRT Form 5 Subtopic 2.2 • Good Food Handling Practices During Cooking',
   },
   {
     id: 'hs-7',
@@ -414,25 +413,25 @@ export const level2KitchenHotspots: KitchenHotspot[] = [
     x: 61,
     y: 74,
     zone: 'memasak',
-    zoneLabel: 'Zon Memasak',
-    title: 'Rak Peralatan Keluli Tahan Karat Bersih',
+    zoneLabel: 'Cooking Zone',
+    title: 'Clean Elevated Stainless Steel Utensil Rack',
     description:
-      'Periuk dan kuali keluli tahan karat telah dicuci, disanitasi, dikeringkan secara udara (air-dried), dan disusun terbalik di atas rak setinggi 30 cm dari lantai.',
+      'Sanitized stainless steel pots and pans have been air-dried and stored inverted on an open rack raised 30 cm off the floor.',
     subtopic: '2.1',
     category: 'sanitasi_dapur',
     isViolation: false,
     question:
-      'Apakah status pematuhan penyimpanan peralatan dapur pada rak ini?',
+      'What is the compliance status of this utensil storage rack?',
     options: [
-      'Pelanggaran — peralatan mesti dilap menggunakan kain kapas lembap sebelum disimpan.',
-      'Pelanggaran — peralatan mesti diletakkan terus di atas lantai supaya tidak jatuh.',
-      'Mematuhi piawaian KKM — peralatan kering secara udara, disusun terbalik & sekurang-kurangnya 15 cm dari lantai.',
+      'Violation — cookware must be wiped dry with a damp cotton cloth before storage.',
+      'Violation — heavy pots must be placed directly on the floor to prevent falling.',
+      'Compliant with MOH standards — utensils are air-dried, stored inverted, and kept at least 15 cm off the floor.',
     ],
     correctOptionIndex: 2,
     explanation:
-      'Syabas! Pengeringan udara (air-drying) mengelakkan pencemaran semula daripada kain lap, kedudukan terbalik menghalang habuk/serangga masuk, dan jarak ≥15 cm dari lantai memudahkan pembersihan lantai.',
+      'Well done! Air-drying avoids re-contamination from dishcloths, storing pots inverted prevents dust or pests from entering, and keeping racks ≥15 cm above the floor allows proper floor sanitation.',
     textbookReference:
-      'KSSM SRT T5 Subtopik 2.1 • Pencucian, Sanitasi & Penyimpanan Peralatan Dapur',
+      'KSSM SRT Form 5 Subtopic 2.1 • Cleaning, Sanitizing & Storing Kitchen Utensils',
   },
   {
     id: 'hs-8',
@@ -440,81 +439,72 @@ export const level2KitchenHotspots: KitchenHotspot[] = [
     x: 89,
     y: 66,
     zone: 'sisa',
-    zoneLabel: 'Zon Sisa',
-    title: 'Tong Sampah Tanpa Penutup & Tiada Pedal Kaki',
+    zoneLabel: 'Waste Zone',
+    title: 'Overflowing Lidless Trash Bin Without Foot Pedal',
     description:
-      'Tong sampah dapur terbuka luas tanpa penutup atau pedal kaki, tidak dilapik plastik sampah, dan sisa makanan melimpah menarik lalat.',
+      'The kitchen waste bin has no lid or foot pedal, is unlined, and overflowing food scraps are attracting flies.',
     subtopic: '2.1',
     category: 'sanitasi_dapur',
     isViolation: true,
     question:
-      'Bagaimanakah ciri tong sampah dapur yang memenuhi piawaian sanitasi KKM?',
+      'What are the required features of a compliant kitchen waste bin?',
     options: [
-      'Tong sampah bertutup rapat, dikendalikan dengan pedal kaki, dilapik beg plastik, dan dikosongkan apabila ¾ penuh.',
-      'Tong sampah terbuka supaya pekerja tidak perlu menyentuh penutup dengan tangan.',
-      'Tong sampah hanya perlu dikosongkan seminggu sekali untuk menjimatkan plastik.',
+      'Tight-fitting lid, foot-pedal operated, lined with a plastic bag, and emptied once ¾ full.',
+      'Completely open top so staff never have to touch a lid with their hands.',
+      'Emptied once per week to reduce plastic bag usage.',
     ],
     correctOptionIndex: 0,
     explanation:
-      'Tong sampah di dapur wajib mempunyai penutup rapat dan pedal kaki agar tangan pengendali tidak tercemar, dilapik plastik sampah untuk elak kebocoran, dan dibuang segera sebelum melimpah bagi mencegah kehadiran lalat dan tikus.',
+      'Kitchen bins must have a tight-fitting lid and foot pedal so handlers avoid contaminating their hands, be lined with durable plastic bags to prevent leaks, and be emptied regularly before overflowing to deter flies and rodents.',
     textbookReference:
-      'KSSM SRT T5 Subtopik 2.1 • Pengurusan Sisa Makanan & Kawalan Makhluk Perosak',
+      'KSSM SRT Form 5 Subtopic 2.1 • Waste Management & Pest Control',
   },
 ];
 
 /**
- * LEVEL 3 DATASET — Subtopik 2.3: Penyimpanan Makanan, Rantaian Sejuk & FIFO
+ * LEVEL 3 DATASET — Subtopic 2.3: Food Storage, Cold-Chain & FIFO
  */
 export const level3Compartments: StorageCompartmentEnv[] = [
   {
     id: 'chiller',
-    name: 'Peti Sejuk (Chiller)',
-    englishName: 'Chiller Unit',
+    name: 'Chiller Unit',
+    englishName: 'Peti Sejuk',
     ambientTemp: 3,
     idealTempMin: 0,
     idealTempMax: 4,
-    idealRangeLabel: '0°C hingga 4°C',
+    idealRangeLabel: '0°C to 4°C',
     isAmbientCompliant: true,
-    ambientNote: 'Suhu ruang mematuhi zon selamat chiller (di bawah 5°C).',
+    ambientNote: 'Ambient temperature is safely within the chiller range (below 5°C).',
   },
   {
     id: 'freezer',
-    name: 'Peti Sejuk Beku (Freezer)',
-    englishName: 'Deep Freezer',
+    name: 'Deep Freezer',
+    englishName: 'Peti Sejuk Beku',
     ambientTemp: -18,
     idealTempMin: -24,
     idealTempMax: -18,
     idealRangeLabel: '≤ -18°C',
     isAmbientCompliant: true,
-    ambientNote: 'Suhu ruang beku mematuhi piawaian penyimpanan beku KKM.',
+    ambientNote: 'Ambient freezer temperature complies with MOH frozen storage rules.',
   },
   {
     id: 'dry_store',
-    name: 'Stor Kering (Dry Store)',
-    englishName: 'Dry Storage',
+    name: 'Dry Store',
+    englishName: 'Stor Kering',
     ambientTemp: 19,
     idealTempMin: 10,
     idealTempMax: 21,
-    idealRangeLabel: '10°C hingga 21°C',
+    idealRangeLabel: '10°C to 21°C',
     isAmbientCompliant: true,
-    ambientNote: 'Suhu persekitaran kering, berventilasi dan terkawal (≤ 21°C).',
+    ambientNote: 'Cool, dry, well-ventilated storage environment (≤ 21°C).',
   },
 ];
 
-/**
- * 6 Storage Items (2 Safe, 4 Unsafe — covering every KSSM Subtopik 2.3 rule):
- * - Cross-contamination shelf order (raw above cooked)
- * - Safe chilled dairy (0–4°C, intact)
- * - Thawing/Danger zone freezer item (-5°C)
- * - Safe vacuum-packed frozen meat (-19°C)
- * - Dented can stored directly on floor (< 15 cm off floor)
- * - Authentic 2-batch FIFO violation in dry store
- */
 export const level3StorageItems: StorageItem[] = [
   {
     id: 'store-1',
-    name: 'Ayam Mentah Tanpa Penutup (Rak Atas)',
-    categoryLabel: 'Protein Mentah',
+    name: 'Uncovered Raw Chicken (Top Shelf)',
+    categoryLabel: 'Raw Poultry',
     subtopic: '2.3',
     category: 'penyimpanan_makanan',
     compartment: 'chiller',
@@ -522,29 +512,30 @@ export const level3StorageItems: StorageItem[] = [
     idealTempMin: 0,
     idealTempMax: 4,
     packagingCondition: 'uncovered',
-    packagingLabel: 'Bekas terbuka, cecair darah menitis',
+    packagingLabel: 'Open container with raw blood/juices dripping',
     placementShelf: 'top',
-    placementNote: 'Diletakkan di RAK ATAS, tepat di atas bekas sup & nasi masak di rak tengah!',
+    placementNote:
+      'Placed on the TOP SHELF, directly above cooked soup and ready-to-eat rice on the middle shelf!',
     dateReceivedOffsetDays: -1,
     expiryOffsetDays: 2,
-    fifoComparisonNote: 'Stok tunggal — tarikh terima semalam.',
+    fifoComparisonNote: 'Single batch — received yesterday.',
     isFIFOCompliant: true,
     isSafe: false,
     violationOptions: [
-      'Pencemaran silang — ayam mentah terbuka di rak atas makanan masak',
-      'Suhu peti sejuk melebihi Zon Suhu Bahaya (60°C)',
-      'Tarikh luput produk telah berlalu 30 hari',
+      'Cross-contamination — uncovered raw chicken stored above cooked food',
+      'Chiller temperature exceeds the 60°C danger zone ceiling',
+      'Product expired more than 30 days ago',
     ],
     correctViolationIndex: 0,
     defectReason:
-      'Ayam mentah tidak bertutup di rak atas menyebabkan cecair mentah (darah/jus) menitis ke makanan siap dimakan di rak bawah. Makanan masak wajib di rak atas, manakala daging/ayam mentah bertutup rapat wajib di rak paling bawah.',
+      'Uncovered raw chicken on the top shelf drips raw juices onto ready-to-eat food below. Cooked and ready-to-eat items must always go on the top shelf, while tightly sealed raw meat belongs on the bottom shelf.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.3 • Susunan Penyimpanan Peti Sejuk & Pencegahan Pencemaran Silang',
+      'KSSM SRT Form 5 Subtopic 2.3 • Chiller Shelf Hierarchy & Cross-Contamination Prevention',
   },
   {
     id: 'store-2',
-    name: 'Susu Segar Pasteur & Kuih Bertutup',
-    categoryLabel: 'Tenusu & Makanan Sedia Dimakan',
+    name: 'Sealed Pasteurized Milk & Covered Pastries',
+    categoryLabel: 'Dairy & Ready-to-Eat',
     subtopic: '2.3',
     category: 'penyimpanan_makanan',
     compartment: 'chiller',
@@ -552,29 +543,30 @@ export const level3StorageItems: StorageItem[] = [
     idealTempMin: 0,
     idealTempMax: 4,
     packagingCondition: 'intact',
-    packagingLabel: 'Bertutup rapat, berlabel tarikh & kedap udara',
+    packagingLabel: 'Tightly sealed, date-labeled & airtight',
     placementShelf: 'middle',
-    placementNote: 'Disusun kemas di RAK TENGAH, berasingan daripada bahan mentah di rak bawah.',
+    placementNote:
+      'Stored neatly on the MIDDLE SHELF, separated from any raw meat storage below.',
     dateReceivedOffsetDays: -2,
     expiryOffsetDays: 6,
-    fifoComparisonNote: 'Batch lebih lama diletakkan di bahagian hadapan (FIFO dipatuhi).',
+    fifoComparisonNote: 'Older batch placed in front for first use (FIFO followed).',
     isFIFOCompliant: true,
     isSafe: true,
     violationOptions: [
-      'Suhu melebihi 4°C',
-      'Pembungkusan rosak dan terbuka',
-      'Pelanggaran susunan rak',
+      'Core temperature exceeds 4°C',
+      'Damaged and uncovered packaging',
+      'Improper shelf placement',
     ],
     correctViolationIndex: -1,
     defectReason:
-      'Selamat disimpan! Suhu teras +3°C berada dalam julat selamat chiller (0°C–4°C), pembungkusan bertutup rapat, berlabel jelas, dan mematuhi prinsip FIFO.',
+      'Safe to store! Core temperature of +3°C is within the safe chiller range (0°C–4°C), packaging is sealed and labeled, expiry date is valid, and FIFO rotation is respected.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.3 • Pengawalan Suhu Peti Sejuk (0°C–4°C) & Pelabelan',
+      'KSSM SRT Form 5 Subtopic 2.3 • Chiller Temperature Control (0°C–4°C) & Labeling',
   },
   {
     id: 'store-3',
-    name: 'Ikan Siakap Sejuk Beku (Nyahbeku Separa)',
-    categoryLabel: 'Hasil Laut Sejuk Beku',
+    name: 'Partially Thawed Frozen Sea Bass (-5°C)',
+    categoryLabel: 'Frozen Seafood',
     subtopic: '2.3',
     category: 'suhu_stor',
     compartment: 'freezer',
@@ -582,29 +574,29 @@ export const level3StorageItems: StorageItem[] = [
     idealTempMin: -24,
     idealTempMax: -18,
     packagingCondition: 'damaged',
-    packagingLabel: 'Plastik koyak, hablur ais besar & tekstur lembik',
+    packagingLabel: 'Torn plastic wrap, large ice crystals & soft texture',
     placementShelf: 'middle',
-    placementNote: 'Diletakkan berhampiran pintu freezer yang kerap dibuka tutup.',
+    placementNote: 'Stored right beside a frequently opened freezer door.',
     dateReceivedOffsetDays: -14,
     expiryOffsetDays: 45,
-    fifoComparisonNote: 'Suhu teras ikan meningkat ke -5°C (keluar dari julat beku -18°C).',
+    fifoComparisonNote: 'Core fish temperature rose to -5°C (outside ≤ -18°C zone).',
     isFIFOCompliant: true,
     isSafe: false,
     violationOptions: [
-      'Suhu penyimpanan terlalu tinggi (-5°C, zon nyahbeku tidak selamat) & bungkusan koyak',
-      'Diletakkan di stor kering tanpa rak bertingkat',
-      'Makanan masak bercampur dengan tin kemek',
+      'Temperature too warm (-5°C thawing zone, above -18°C) & torn packaging',
+      'Stored in dry store without elevated racks',
+      'Cooked food mixed with dented canned goods',
     ],
     correctViolationIndex: 0,
     defectReason:
-      'Makanan sejuk beku mesti dikekalkan pada suhu -18°C atau lebih rendah. Suhu -5°C menyebabkan nyahbeku separa, kerosakan tekstur (freezer burn), dan menggalakkan pertumbuhan bakteria apabila dibekukan semula.',
+      'Frozen food must stay at -18°C or colder. At -5°C, partial thawing occurs, causing freezer burn, texture degradation, and rapid bacterial growth if refrozen.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.3 • Rantaian Sejuk & Penyimpanan Sejuk Beku (≤ -18°C)',
+      'KSSM SRT Form 5 Subtopic 2.3 • Cold-Chain Integrity & Frozen Storage (≤ -18°C)',
   },
   {
     id: 'store-4',
-    name: 'Daging Lembu Pek Vakum',
-    categoryLabel: 'Daging Sejuk Beku',
+    name: 'Vacuum-Sealed Frozen Beef Fillet',
+    categoryLabel: 'Frozen Meat',
     subtopic: '2.3',
     category: 'suhu_stor',
     compartment: 'freezer',
@@ -612,29 +604,29 @@ export const level3StorageItems: StorageItem[] = [
     idealTempMin: -24,
     idealTempMax: -18,
     packagingCondition: 'intact',
-    packagingLabel: 'Pek vakum utuh, kedap udara & berlabel tarikh terima',
+    packagingLabel: 'Intact vacuum seal, airtight & labeled with received date',
     placementShelf: 'bottom',
-    placementNote: 'Disusun kemas di RAK BAWAH dengan ruang pengaliran udara sejuk.',
+    placementNote: 'Neatly arranged on the BOTTOM SHELF with airflow clearance.',
     dateReceivedOffsetDays: -10,
     expiryOffsetDays: 120,
-    fifoComparisonNote: 'Stok lebih awal disusun di hadapan (FIFO dipatuhi).',
+    fifoComparisonNote: 'Earlier stock rotated to the front (FIFO compliant).',
     isFIFOCompliant: true,
     isSafe: true,
     violationOptions: [
-      'Suhu terlalu tinggi melebihi -18°C',
-      'Pembungkusan koyak',
-      'Pelanggaran peraturan FIFO',
+      'Temperature above -18°C',
+      'Torn vacuum packaging',
+      'FIFO rotation violation',
     ],
     correctViolationIndex: -1,
     defectReason:
-      'Selamat disimpan! Daging lembu dipek vakum dengan sempurna pada suhu -19°C (≤ -18°C), mempunyai label tarikh jelas, dan mengikut giliran stok FIFO.',
+      'Safe to store! The beef is properly vacuum-sealed at -19°C (≤ -18°C), clearly labeled with dates, and follows FIFO stock rotation.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.3 • Penyimpanan Sejuk Beku & Pengawalan Rantaian Sejuk',
+      'KSSM SRT Form 5 Subtopic 2.3 • Frozen Food Storage & Cold-Chain Management',
   },
   {
     id: 'store-5',
-    name: 'Tin Sardin Kemek & Berkarat di Atas Lantai',
-    categoryLabel: 'Makanan Dalam Tin',
+    name: 'Dented & Rusted Sardine Cans on Floor',
+    categoryLabel: 'Canned Food',
     subtopic: '2.3',
     category: 'penyimpanan_makanan',
     compartment: 'dry_store',
@@ -642,29 +634,30 @@ export const level3StorageItems: StorageItem[] = [
     idealTempMin: 10,
     idealTempMax: 21,
     packagingCondition: 'damaged',
-    packagingLabel: 'Bahagian kelim tin kemek teruk & kesan karat',
+    packagingLabel: 'Deeply dented can seams & visible surface rust',
     placementShelf: 'floor',
-    placementNote: 'Karton tin diletakkan TERUS DI ATAS LANTAI tanpa palet (jarak 0 cm).',
+    placementNote:
+      'Carton is stacked DIRECTLY ON THE FLOOR with zero pallet clearance (0 cm).',
     dateReceivedOffsetDays: -60,
     expiryOffsetDays: 180,
-    fifoComparisonNote: 'Tarikh luput masih jauh, tetapi struktur tin telah rosak.',
+    fifoComparisonNote: 'Expiry date is still valid, but container integrity is compromised.',
     isFIFOCompliant: true,
     isSafe: false,
     violationOptions: [
-      'Tin kemek/berkarat (risiko botulisme) & disimpan terus di atas lantai (< 15 cm)',
-      'Suhu stor kering terlalu sejuk di bawah 0°C',
-      'Ayam mentah menitis ke atas tin makanan',
+      'Dented/rusted cans (botulism risk) & stored directly on the floor (< 15 cm)',
+      'Dry store temperature is too cold below 0°C',
+      'Raw chicken dripping onto canned items',
     ],
     correctViolationIndex: 0,
     defectReason:
-      'Tin makanan yang kemek pada kelim atau berkarat berisiko menyebabkan kebocoran mikro dan keracunan bakteria Clostridium botulinum. Selain itu, semua bahan makanan kering wajib disimpan sekurang-kurangnya 15 cm dari lantai dan 15 cm dari dinding.',
+      'Cans with dented seams or rust risk micro-leaks and Clostridium botulinum toxin contamination. Additionally, all dry goods must be stored at least 15 cm (6 inches) off the floor and away from walls.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.3 • Penyimpanan Bahan Kering (Jarak 15 cm & Pemeriksaan Tin)',
+      'KSSM SRT Form 5 Subtopic 2.3 • Dry Storage Rules (15 cm Floor Clearance & Can Inspection)',
   },
   {
     id: 'store-6',
-    name: 'Tepung Gandum & Susu Pekat (Susunan Stok Terbalik)',
-    categoryLabel: 'Bahan Kering Berpaket',
+    name: 'Wheat Flour & Condensed Milk (Reversed Stock Order)',
+    categoryLabel: 'Dry Packaged Goods',
     subtopic: '2.3',
     category: 'penyimpanan_makanan',
     compartment: 'dry_store',
@@ -672,26 +665,27 @@ export const level3StorageItems: StorageItem[] = [
     idealTempMin: 10,
     idealTempMax: 21,
     packagingCondition: 'intact',
-    packagingLabel: 'Pembungkusan utuh, tetapi Batch Lama terperap di belakang hingga LUPUT',
+    packagingLabel:
+      'Packaging intact, but older rear batch was trapped behind new stock and EXPIRED',
     placementShelf: 'middle',
     placementNote:
-      'Batch Baharu (luput +180 hari) disusun di HADAPAN, manakala Batch Lama di BELAKANG sudah luput 12 hari lalu!',
+      'Newer batch (expires in +180 days) was pushed to the FRONT, trapping the older batch at the BACK — expired 12 days ago!',
     dateReceivedOffsetDays: -95,
     expiryOffsetDays: -12,
     fifoComparisonNote:
-      'PELANGGARAN FIFO: Stok masuk dahulu tidak dikeluarkan dahulu sehingga melepasi tarikh luput.',
+      'FIFO VIOLATION: Older stock was not rotated to the front and has passed its expiry date.',
     isFIFOCompliant: false,
     isSafe: false,
     violationOptions: [
-      'Suhu peti sejuk melebihi 5°C',
-      'Pelanggaran Peraturan FIFO (First In, First Out) menyebabkan stok lama luput',
-      'Tiada penutup kepala semasa menyusun rak',
+      'Chiller temperature rose above 5°C',
+      'FIFO (First In, First Out) violation causing older stock to expire',
+      'Staff failed to wear a hairnet while stocking shelves',
     ],
     correctViolationIndex: 1,
     defectReason:
-      'Sistem FIFO (First In, First Out / Masuk Dahulu, Keluar Dahulu) gagal dipatuhi! Stok baharu diletakkan di hadapan menyebabkan stok lama terperap di belakang sehingga melepasi tarikh luput dan mesti disita/dilupuskan.',
+      'The FIFO (First In, First Out) rule was violated! Placing new stock in front traps older stock in the back until it expires. Expired food must be seized and discarded immediately.',
     kssmReference:
-      'KSSM SRT T5 Subtopik 2.3 • Pengurusan Stok & Peraturan FIFO (First In, First Out)',
+      'KSSM SRT Form 5 Subtopic 2.3 • Stock Rotation & FIFO (First In, First Out) Rules',
   },
 ];
 

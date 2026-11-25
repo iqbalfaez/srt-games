@@ -39,7 +39,7 @@ export function HotspotQuizModal() {
       level: 2,
       subtopic: hotspot.subtopic,
       isCorrect,
-      itemTitle: `Titik #${hotspot.pinNumber}: ${hotspot.title}`,
+      itemTitle: `Pin #${hotspot.pinNumber}: ${hotspot.title}`,
       userChoice: hotspot.options[idx],
       correctChoice: hotspot.options[hotspot.correctOptionIndex],
       explanation: hotspot.explanation,
@@ -81,7 +81,7 @@ export function HotspotQuizModal() {
                 PIN #{hotspot.pinNumber} • {hotspot.zoneLabel}
               </span>
               <span className="rounded-md bg-kkm-teal px-2 py-0.5 font-mono-tech text-xs font-bold">
-                Subtopik {hotspot.subtopic}
+                Subtopic {hotspot.subtopic}
               </span>
             </div>
             <h3 className="text-base font-extrabold leading-snug">
@@ -92,7 +92,7 @@ export function HotspotQuizModal() {
             type="button"
             onClick={handleClose}
             className="rounded-lg p-1.5 text-blue-100 hover:bg-white/15 hover:text-white"
-            aria-label="Tutup modal pemeriksaan"
+            aria-label="Close inspection modal"
           >
             <X className="h-5 w-5" />
           </button>
@@ -103,7 +103,7 @@ export function HotspotQuizModal() {
           <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
             <div className="mb-1 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
               <AlertCircle className="h-3.5 w-3.5 text-kkm-teal" />
-              Pemerhatian Visual di Lapangan
+              On-Site Visual Observation
             </div>
             <p className="text-sm leading-relaxed text-slate-800">
               {hotspot.description}
@@ -181,14 +181,14 @@ export function HotspotQuizModal() {
                     <XCircle className="h-4 w-4" />
                   )}
                   {existingAnswer.isCorrect
-                    ? 'Penilaian Audit Tepat!'
-                    : 'Penilaian Kurang Tepat'}
+                    ? 'Accurate Audit Assessment!'
+                    : 'Incorrect Assessment'}
                 </span>
                 <span className="font-mono-tech text-xs font-extrabold text-slate-800">
                   {existingAnswer.pointsAwarded >= 0
                     ? `+${existingAnswer.pointsAwarded}`
                     : existingAnswer.pointsAwarded}{' '}
-                  mata
+                  pts
                 </span>
               </div>
               <p className="text-xs leading-relaxed text-slate-700">
@@ -204,7 +204,7 @@ export function HotspotQuizModal() {
                 onClick={handleClose}
                 className="mt-4 w-full rounded-xl bg-kkm-blue px-4 py-2.5 text-xs font-bold text-white transition hover:bg-kkm-blue-dark"
               >
-                Selesai &amp; Kembali ke Pelan Dapur
+                Done — Return to Kitchen Map
               </button>
             </div>
           )}

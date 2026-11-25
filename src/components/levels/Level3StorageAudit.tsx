@@ -33,10 +33,10 @@ import {
 } from '../../utils/sound';
 
 const SHELF_LABELS: Record<PlacementShelf, string> = {
-  top: 'Rak Atas',
-  middle: 'Rak Tengah',
-  bottom: 'Rak Bawah',
-  floor: 'Terus di Atas Lantai (0 cm)',
+  top: 'Top Shelf',
+  middle: 'Middle Shelf',
+  bottom: 'Bottom Shelf',
+  floor: 'Directly on Floor (0 cm)',
 };
 
 const COMPARTMENT_ICONS: Record<StorageCompartmentId, typeof Thermometer> = {
@@ -74,7 +74,6 @@ export function Level3StorageAudit() {
     (item) => item.compartment === activeTab
   );
 
-  // Pause timer while feedback modal is open
   useEffect(() => {
     if (gameMode === 'practice') return;
     setTimerActive(feedback === null);
@@ -87,8 +86,8 @@ export function Level3StorageAudit() {
 
     const isCorrect = item.isSafe;
     const correctChoice = item.isSafe
-      ? 'SELAMAT DISIMPAN'
-      : `SITA / ROSAK — ${item.violationOptions[item.correctViolationIndex]}`;
+      ? 'SAFE TO STORE'
+      : `SEIZE / DISCARD — ${item.violationOptions[item.correctViolationIndex]}`;
 
     const points = processAnswer({
       itemId: item.id,
@@ -96,7 +95,7 @@ export function Level3StorageAudit() {
       subtopic: item.subtopic,
       isCorrect,
       itemTitle: item.name,
-      userChoice: 'SELAMAT DISIMPAN',
+      userChoice: 'SAFE TO STORE',
       correctChoice,
       explanation: item.defectReason,
       kssmReference: item.kssmReference,
@@ -109,7 +108,7 @@ export function Level3StorageAudit() {
       item,
       isCorrect,
       pointsAwarded: points,
-      userChoice: 'SELAMAT DISIMPAN',
+      userChoice: 'SAFE TO STORE',
       correctChoice,
     });
   };
@@ -122,8 +121,8 @@ export function Level3StorageAudit() {
     const reasonText = item.violationOptions[reasonIndex];
     const isCorrect = !item.isSafe && reasonIndex === item.correctViolationIndex;
     const correctChoice = item.isSafe
-      ? 'SELAMAT DISIMPAN (Mematuhi piawaian)'
-      : `SITA / ROSAK — ${item.violationOptions[item.correctViolationIndex]}`;
+      ? 'SAFE TO STORE (Compliant)'
+      : `SEIZE / DISCARD — ${item.violationOptions[item.correctViolationIndex]}`;
 
     const points = processAnswer({
       itemId: item.id,
@@ -131,7 +130,7 @@ export function Level3StorageAudit() {
       subtopic: item.subtopic,
       isCorrect,
       itemTitle: item.name,
-      userChoice: `SITA / ROSAK — ${reasonText}`,
+      userChoice: `SEIZE / DISCARD — ${reasonText}`,
       correctChoice,
       explanation: item.defectReason,
       kssmReference: item.kssmReference,
@@ -144,7 +143,7 @@ export function Level3StorageAudit() {
       item,
       isCorrect,
       pointsAwarded: points,
-      userChoice: `SITA / ROSAK (${reasonText})`,
+      userChoice: `SEIZE / DISCARD (${reasonText})`,
       correctChoice,
     });
   };
@@ -160,7 +159,6 @@ export function Level3StorageAudit() {
       return;
     }
 
-    // Auto-switch tab if all items in current compartment are now resolved
     const currentDone = compartmentItems.every((i) => Boolean(updatedAnswers[i.id]));
     if (currentDone) {
       const nextUnfinished = level3StorageItems.find(
@@ -184,18 +182,18 @@ export function Level3StorageAudit() {
         <div>
           <div className="flex items-center gap-2">
             <span className="rounded-md bg-kkm-amber px-2 py-0.5 font-mono-tech text-xs font-bold text-white">
-              SUBTOPIK 2.3
+              SUBTOPIC 2.3
             </span>
             <span className="text-xs font-semibold text-kkm-blue">
-              Audit Rantaian Sejuk, Penyimpanan &amp; FIFO
+              Cold-Chain, Storage &amp; FIFO Audit
             </span>
           </div>
           <h1 className="mt-1 text-lg font-extrabold text-slate-900 sm:text-xl">
-            Pemeriksaan Peti Sejuk, Sejuk Beku &amp; Stor Kering
+            Chiller, Freezer &amp; Dry Store Inspection
           </h1>
           <p className="text-xs text-slate-600">
-            Semak suhu teras, susunan rak, keadaan pembungkusan, jarak lantai (≥15 cm),
-            dan pematuhan <strong>FIFO</strong>. Zon Suhu Bahaya:{' '}
+            Verify core temperatures, shelf placement, packaging condition, ≥15 cm floor
+            clearance, and <strong>FIFO</strong> rotation. Temperature Danger Zone:{' '}
             <span className="font-mono-tech font-bold text-kkm-red">5°C – 60°C</span>.
           </p>
         </div>
@@ -203,7 +201,7 @@ export function Level3StorageAudit() {
         <div className="flex items-center gap-3">
           <div className="rounded-xl border border-amber-200 bg-kkm-amber-soft px-4 py-2 text-right">
             <div className="text-[10px] font-bold uppercase tracking-wider text-kkm-amber">
-              Item Diaudit
+              Items Audited
             </div>
             <div className="font-mono-tech text-base font-extrabold text-slate-900">
               {resolvedCount} / {level3StorageItems.length}
@@ -217,7 +215,7 @@ export function Level3StorageAudit() {
               }
               className="inline-flex items-center gap-1.5 rounded-xl bg-kkm-blue px-4 py-3 text-xs font-bold text-white hover:bg-kkm-blue-dark"
             >
-              Rumusan
+              Summary
               <ArrowRight className="h-4 w-4" />
             </button>
           )}
@@ -282,7 +280,7 @@ export function Level3StorageAudit() {
                     : `${comp.ambientTemp}°C`}
                 </div>
                 <div className="mt-1 font-mono-tech text-[11px] font-semibold text-slate-500">
-                  {done}/{items.length} selesai
+                  {done}/{items.length} done
                 </div>
               </div>
             </button>
@@ -290,7 +288,7 @@ export function Level3StorageAudit() {
         })}
       </div>
 
-      {/* Main Content: Left = Visual Shelf Rack, Right = Item Inspection Cards */}
+      {/* Main Content */}
       <div className="grid gap-5 lg:grid-cols-12">
         {/* Visual Compartment Cutaway */}
         <div className="lg:col-span-4">
@@ -298,7 +296,7 @@ export function Level3StorageAudit() {
             <div className="mb-3 flex items-center justify-between border-b border-slate-100 pb-3">
               <div>
                 <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                  Termometer Digital Ruang
+                  Ambient Thermometer
                 </div>
                 <div className="text-sm font-extrabold text-slate-900">
                   {activeEnv.name}
@@ -318,7 +316,7 @@ export function Level3StorageAudit() {
             {/* Shelf Cutaway Diagram */}
             <div className="mb-2 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-slate-500">
               <Layers className="h-3.5 w-3.5 text-kkm-teal" />
-              Susunan Rak Semasa
+              Current Shelf Layout
             </div>
 
             <div className="overflow-hidden rounded-xl border-2 border-slate-300 bg-slate-100">
@@ -338,18 +336,18 @@ export function Level3StorageAudit() {
                     <div className="mb-1.5 flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-slate-500">
                       <span>{SHELF_LABELS[shelf]}</span>
                       {activeTab === 'chiller' && shelf === 'top' && (
-                        <span className="text-kkm-teal">Sepatutnya: Sedia Dimakan</span>
+                        <span className="text-kkm-teal">Rule: Ready-to-Eat</span>
                       )}
                       {activeTab === 'chiller' && shelf === 'bottom' && (
-                        <span className="text-kkm-blue">Sepatutnya: Bahan Mentah</span>
+                        <span className="text-kkm-blue">Rule: Raw Meat</span>
                       )}
                     </div>
 
                     {itemsOnShelf.length === 0 ? (
                       <div className="rounded-lg border border-dashed border-slate-200 py-2 text-center text-[11px] text-slate-400">
                         {activeTab === 'chiller' && shelf === 'bottom'
-                          ? '(Ruang kosong — makanan masak berada di rak tengah)'
-                          : '(Kosong)'}
+                          ? '(Empty — cooked food sits on middle shelf)'
+                          : '(Empty)'}
                       </div>
                     ) : (
                       <div className="space-y-1.5">
@@ -383,7 +381,7 @@ export function Level3StorageAudit() {
             </div>
 
             <div className="mt-3 text-[11px] text-slate-500">
-              Tarikh Audit Hari Ini:{' '}
+              Today&apos;s Audit Date:{' '}
               <span className="font-mono-tech font-bold text-slate-700">
                 {getInspectionDateLabel()}
               </span>
@@ -425,20 +423,20 @@ export function Level3StorageAudit() {
                     }`}
                   >
                     <Thermometer className="h-4 w-4" />
-                    Suhu Teras:{' '}
+                    Core Temp:{' '}
                     {item.currentTemp > 0
                       ? `+${item.currentTemp}°C`
                       : `${item.currentTemp}°C`}
                   </div>
                 </div>
 
-                {/* Inspection Telemetry Grid */}
+                {/* Telemetry Grid */}
                 <div className="space-y-4 p-5">
-                  <div className="grid gap-3 sm:grid-cols-3 text-xs">
+                  <div className="grid gap-3 text-xs sm:grid-cols-3">
                     <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                      <div className="mb-1 flex items-center gap-1 font-bold uppercase text-slate-500 text-[10px]">
+                      <div className="mb-1 flex items-center gap-1 text-[10px] font-bold uppercase text-slate-500">
                         <Layers className="h-3.5 w-3.5" />
-                        Kedudukan Rak
+                        Shelf Placement
                       </div>
                       <div className="font-bold text-slate-900">
                         {SHELF_LABELS[item.placementShelf]}
@@ -449,20 +447,20 @@ export function Level3StorageAudit() {
                     </div>
 
                     <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                      <div className="mb-1 flex items-center gap-1 font-bold uppercase text-slate-500 text-[10px]">
+                      <div className="mb-1 flex items-center gap-1 text-[10px] font-bold uppercase text-slate-500">
                         {item.packagingCondition === 'intact' ? (
                           <PackageCheck className="h-3.5 w-3.5 text-kkm-teal" />
                         ) : (
                           <PackageX className="h-3.5 w-3.5 text-kkm-red" />
                         )}
-                        Pembungkusan
+                        Packaging
                       </div>
                       <div className="font-bold text-slate-900">
                         {item.packagingCondition === 'intact'
-                          ? 'Utuh & Bertutup'
+                          ? 'Intact & Sealed'
                           : item.packagingCondition === 'damaged'
-                            ? 'Rosak / Kemek'
-                            : 'Terbuka / Tanpa Penutup'}
+                            ? 'Damaged / Dented'
+                            : 'Uncovered / Open'}
                       </div>
                       <p className="mt-1 text-[11px] leading-snug text-slate-600">
                         {item.packagingLabel}
@@ -470,16 +468,16 @@ export function Level3StorageAudit() {
                     </div>
 
                     <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                      <div className="mb-1 flex items-center gap-1 font-bold uppercase text-slate-500 text-[10px]">
+                      <div className="mb-1 flex items-center gap-1 text-[10px] font-bold uppercase text-slate-500">
                         <CalendarClock className="h-3.5 w-3.5" />
-                        Tag Tarikh &amp; FIFO
+                        FIFO &amp; Expiry Tag
                       </div>
                       <div className="font-mono-tech text-[11px] text-slate-800">
                         <div>
-                          Terima: <strong>{dateReceived}</strong>
+                          Received: <strong>{dateReceived}</strong>
                         </div>
                         <div>
-                          Luput: <strong>{expiryDate}</strong>
+                          Expiry: <strong>{expiryDate}</strong>
                         </div>
                       </div>
                       <p className="mt-1 text-[11px] leading-snug text-slate-600">
@@ -511,14 +509,14 @@ export function Level3StorageAudit() {
                             <XCircle className="h-4 w-4" />
                           )}
                           {existingAnswer.isCorrect
-                            ? 'Audit Tepat!'
-                            : 'Audit Kurang Tepat'}
+                            ? 'Accurate Audit!'
+                            : 'Incorrect Audit'}
                         </span>
                         <span className="font-mono-tech text-slate-700">
                           {existingAnswer.pointsAwarded >= 0
                             ? `+${existingAnswer.pointsAwarded}`
                             : existingAnswer.pointsAwarded}{' '}
-                          mata
+                          pts
                         </span>
                       </div>
                       <p className="mt-1.5 text-xs leading-relaxed text-slate-700">
@@ -536,7 +534,7 @@ export function Level3StorageAudit() {
                         className="flex items-center justify-center gap-2 rounded-xl bg-kkm-green px-4 py-3 text-xs font-extrabold tracking-wide text-white shadow-sm transition hover:bg-green-800 active:scale-[0.98]"
                       >
                         <ShieldCheck className="h-4 w-4" />
-                        SELAMAT DISIMPAN
+                        SAFE TO STORE
                       </button>
 
                       <button
@@ -548,7 +546,7 @@ export function Level3StorageAudit() {
                         className="flex items-center justify-center gap-2 rounded-xl bg-kkm-red px-4 py-3 text-xs font-extrabold tracking-wide text-white shadow-sm transition hover:bg-red-800 active:scale-[0.98]"
                       >
                         <ShieldAlert className="h-4 w-4" />
-                        SITA / ROSAK
+                        SEIZE / DISCARD
                       </button>
                     </div>
                   ) : (
@@ -556,7 +554,7 @@ export function Level3StorageAudit() {
                       <div className="mb-2 flex items-center justify-between">
                         <span className="flex items-center gap-1.5 text-xs font-extrabold text-kkm-red">
                           <AlertTriangle className="h-4 w-4" />
-                          Pilih Sebab Sitaan Utama:
+                          Select Primary Seizure Reason:
                         </span>
                         <button
                           type="button"
@@ -566,7 +564,7 @@ export function Level3StorageAudit() {
                           }}
                           className="text-xs font-bold text-slate-500 underline hover:text-slate-800"
                         >
-                          Batal
+                          Cancel
                         </button>
                       </div>
                       <div className="space-y-2">
@@ -611,8 +609,8 @@ export function Level3StorageAudit() {
                 <div>
                   <h3 className="text-base font-extrabold">
                     {feedback.isCorrect
-                      ? 'Keputusan Audit Tepat!'
-                      : 'Keputusan Kurang Tepat'}
+                      ? 'Accurate Storage Verdict!'
+                      : 'Incorrect Storage Verdict'}
                   </h3>
                   <p className="text-xs opacity-90">{feedback.item.name}</p>
                 </div>
@@ -621,21 +619,21 @@ export function Level3StorageAudit() {
                 {feedback.pointsAwarded >= 0
                   ? `+${feedback.pointsAwarded}`
                   : feedback.pointsAwarded}{' '}
-                mata
+                pts
               </span>
             </div>
 
             <div className="space-y-4 p-6">
               {!feedback.isCorrect && (
                 <div className="rounded-xl border border-amber-200 bg-kkm-amber-soft p-3 text-xs text-slate-800">
-                  <strong className="text-kkm-amber">Jawapan Sebenar:</strong>{' '}
+                  <strong className="text-kkm-amber">Correct Verdict:</strong>{' '}
                   {feedback.correctChoice}
                 </div>
               )}
 
               <div>
                 <div className="mb-1 text-xs font-bold uppercase tracking-wide text-slate-500">
-                  Penjelasan Piawaian KSSM Subtopik 2.3
+                  KSSM Subtopic 2.3 Explanation
                 </div>
                 <p className="text-sm leading-relaxed text-slate-700">
                   {feedback.item.defectReason}
@@ -643,7 +641,7 @@ export function Level3StorageAudit() {
               </div>
 
               <div className="rounded-xl bg-slate-100 px-3.5 py-2.5 font-mono-tech text-[11px] font-semibold text-kkm-blue">
-                Rujukan: {feedback.item.kssmReference}
+                Reference: {feedback.item.kssmReference}
               </div>
 
               <button
@@ -652,8 +650,8 @@ export function Level3StorageAudit() {
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-kkm-blue px-5 py-3 text-sm font-bold text-white transition hover:bg-kkm-blue-dark"
               >
                 {resolvedCount >= level3StorageItems.length
-                  ? 'Selesai & Lihat Rumusan Akhir'
-                  : 'Teruskan Pemeriksaan Stor'}
+                  ? 'Finish & View Final Summary'
+                  : 'Continue Storage Inspection'}
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>

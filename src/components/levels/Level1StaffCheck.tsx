@@ -38,9 +38,9 @@ function StaffCharacterSVG({ staff }: { staff: StaffProfile }) {
       viewBox="0 0 260 320"
       className="mx-auto h-64 w-56 select-none sm:h-72 sm:w-60"
       role="img"
-      aria-label={`Ilustrasi pengendali makanan ${staff.name}`}
+      aria-label={`Illustration of food handler ${staff.name}`}
     >
-      {/* Clinical backdrop circle */}
+      {/* Clinical backdrop */}
       <rect x="10" y="10" width="240" height="300" rx="18" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="2" />
       <line x1="28" y1="284" x2="232" y2="284" stroke="#cbd5e1" strokeWidth="2" strokeDasharray="4 4" />
 
@@ -57,7 +57,6 @@ function StaffCharacterSVG({ staff }: { staff: StaffProfile }) {
           <rect x="130" y="279" width="44" height="4" rx="2" fill="#475569" />
         </g>
       ) : (
-        /* Open Slippers — clear violation visual */
         <g>
           <ellipse cx="107" cy="274" rx="16" ry="7" fill={avatar.skinTone} />
           <ellipse cx="153" cy="274" rx="16" ry="7" fill={avatar.skinTone} />
@@ -143,7 +142,6 @@ function StaffCharacterSVG({ staff }: { staff: StaffProfile }) {
             strokeWidth="2.2"
           />
           <rect x="108" y="162" width="44" height="24" rx="4" fill="none" stroke="#94a3b8" strokeWidth="1.5" />
-          {/* Dirty stains on apron */}
           {!apronClean && (
             <g opacity="0.75">
               <ellipse cx="114" cy="144" rx="9" ry="6" fill="#92400e" />
@@ -203,9 +201,9 @@ function StaffCharacterSVG({ staff }: { staff: StaffProfile }) {
       <circle cx="140" cy="64" r="2.6" fill="#1e293b" />
       <path d="M122 76 Q130 82 138 76" fill="none" stroke="#7c2d12" strokeWidth="2" strokeLinecap="round" />
 
-      {/* Quick labels under feet */}
+      {/* Footwear label */}
       <text x="130" y="301" textAnchor="middle" fill="#64748b" fontSize="10" fontWeight="600">
-        {footwear === 'closed_shoes' ? 'Kasut Bertutup' : 'Selipar Terbuka'}
+        {footwear === 'closed_shoes' ? 'Closed Safety Shoes' : 'Open Slippers'}
       </text>
     </svg>
   );
@@ -234,14 +232,13 @@ export function Level1StaffCheck() {
   const [showRejectPicker, setShowRejectPicker] = useState(false);
   const [showHealthCardModal, setShowHealthCardModal] = useState(false);
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
-  const [lastStamp, setLastStamp] = useState<'LULUS' | 'TOLAK' | null>(null);
+  const [lastStamp, setLastStamp] = useState<'APPROVED' | 'REJECTED' | null>(null);
 
   const staff = level1Staff[currentIndex];
   const existingAnswer = answers[staff.id];
   const resolvedCount = level1Staff.filter((s) => Boolean(answers[s.id])).length;
   const allResolved = resolvedCount === level1Staff.length;
 
-  // Pause timer while feedback modal is visible
   useEffect(() => {
     if (gameMode === 'practice') return;
     setTimerActive(feedback === null);
@@ -251,13 +248,13 @@ export function Level1StaffCheck() {
   const handlePassDecision = () => {
     if (existingAnswer) return;
     playStampSound();
-    setLastStamp('LULUS');
+    setLastStamp('APPROVED');
 
     const isCorrect = staff.correctDecision === 'pass';
     const correctChoice =
       staff.correctDecision === 'pass'
-        ? 'LULUS MASUK DAPUR (Mematuhi piawaian)'
-        : `TOLAK — ${staff.violationOptions[staff.correctViolationIndex]}`;
+        ? 'APPROVE KITCHEN ENTRY (Fully compliant)'
+        : `REJECT — ${staff.violationOptions[staff.correctViolationIndex]}`;
 
     const points = processAnswer({
       itemId: staff.id,
@@ -265,7 +262,7 @@ export function Level1StaffCheck() {
       subtopic: staff.subtopic,
       isCorrect,
       itemTitle: `${staff.name} (${staff.staffCode})`,
-      userChoice: 'LULUS MASUK DAPUR',
+      userChoice: 'APPROVE KITCHEN ENTRY',
       correctChoice,
       explanation: staff.explanation,
       kssmReference: staff.kssmReference,
@@ -277,7 +274,7 @@ export function Level1StaffCheck() {
     setFeedback({
       isCorrect,
       pointsAwarded: points,
-      decisionLabel: 'LULUS MASUK DAPUR',
+      decisionLabel: 'APPROVE KITCHEN ENTRY',
       correctLabel: correctChoice,
       explanation: staff.explanation,
       kssmReference: staff.kssmReference,
@@ -287,7 +284,7 @@ export function Level1StaffCheck() {
   const handleConfirmReject = (reasonIndex: number) => {
     if (existingAnswer) return;
     playStampSound();
-    setLastStamp('TOLAK');
+    setLastStamp('REJECTED');
     setShowRejectPicker(false);
 
     const chosenReason = staff.violationOptions[reasonIndex];
@@ -297,8 +294,8 @@ export function Level1StaffCheck() {
 
     const correctChoice =
       staff.correctDecision === 'pass'
-        ? 'LULUS MASUK DAPUR (Tiada pelanggaran)'
-        : `TOLAK — ${staff.violationOptions[staff.correctViolationIndex]}`;
+        ? 'APPROVE KITCHEN ENTRY (No violations)'
+        : `REJECT — ${staff.violationOptions[staff.correctViolationIndex]}`;
 
     const points = processAnswer({
       itemId: staff.id,
@@ -306,7 +303,7 @@ export function Level1StaffCheck() {
       subtopic: staff.subtopic,
       isCorrect,
       itemTitle: `${staff.name} (${staff.staffCode})`,
-      userChoice: `TOLAK — ${chosenReason}`,
+      userChoice: `REJECT — ${chosenReason}`,
       correctChoice,
       explanation: staff.explanation,
       kssmReference: staff.kssmReference,
@@ -318,7 +315,7 @@ export function Level1StaffCheck() {
     setFeedback({
       isCorrect,
       pointsAwarded: points,
-      decisionLabel: `TOLAK (${chosenReason})`,
+      decisionLabel: `REJECT (${chosenReason})`,
       correctLabel: correctChoice,
       explanation: staff.explanation,
       kssmReference: staff.kssmReference,
@@ -355,25 +352,25 @@ export function Level1StaffCheck() {
         <div>
           <div className="flex items-center gap-2">
             <span className="rounded-md bg-kkm-blue px-2 py-0.5 font-mono-tech text-xs font-bold text-white">
-              SUBTOPIK 2.2
+              SUBTOPIC 2.2
             </span>
             <span className="text-xs font-semibold text-kkm-teal">
-              Pos Pemeriksaan Sif Pagi
+              Morning Shift Hygiene Checkpoint
             </span>
           </div>
           <h1 className="mt-1 text-lg font-extrabold text-slate-900 sm:text-xl">
-            Semakan Kebersihan Diri &amp; Pakaian Pengendali Makanan
+            Food Handler Attire &amp; Health Inspection
           </h1>
           <p className="text-xs text-slate-600">
-            Periksa ilustrasi pakaian, tangan, kasut, dan{' '}
-            <strong>Kad Pengendali Makanan</strong> sebelum memberi cop kelulusan.
+            Inspect each staff member&apos;s attire, hands, footwear, and{' '}
+            <strong>Food Handler Health Card</strong> before stamping entry approval.
           </p>
         </div>
 
         {/* Queue Pills */}
         <div className="flex flex-col items-end gap-1.5">
           <div className="font-mono-tech text-xs font-bold text-slate-600">
-            Staf Disemak: {resolvedCount} / {level1Staff.length}
+            Staff Checked: {resolvedCount} / {level1Staff.length}
           </div>
           <div className="flex items-center gap-1.5">
             {level1Staff.map((item, idx) => {
@@ -385,9 +382,7 @@ export function Level1StaffCheck() {
                   type="button"
                   onClick={() => selectIndex(idx)}
                   className={`flex h-8 w-8 items-center justify-center rounded-lg font-mono-tech text-xs font-bold transition ${
-                    isCurrent
-                      ? 'ring-2 ring-kkm-blue ring-offset-1 '
-                      : ''
+                    isCurrent ? 'ring-2 ring-kkm-blue ring-offset-1 ' : ''
                   }${
                     ans
                       ? ans.isCorrect
@@ -413,7 +408,7 @@ export function Level1StaffCheck() {
         <div className="relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 shadow-sm lg:col-span-5">
           <div className="mb-3 flex items-center justify-between">
             <span className="rounded-lg bg-slate-100 px-2.5 py-1 font-mono-tech text-xs font-bold text-slate-700">
-              STAF #{currentIndex + 1} • {staff.staffCode}
+              STAFF #{currentIndex + 1} • {staff.staffCode}
             </span>
             <div className="flex items-center gap-1">
               <button
@@ -421,7 +416,7 @@ export function Level1StaffCheck() {
                 disabled={currentIndex === 0}
                 onClick={() => selectIndex(currentIndex - 1)}
                 className="rounded-lg border border-slate-200 p-1.5 text-slate-600 hover:bg-slate-50 disabled:opacity-35"
-                aria-label="Staf sebelumnya"
+                aria-label="Previous staff"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
@@ -430,7 +425,7 @@ export function Level1StaffCheck() {
                 disabled={currentIndex === level1Staff.length - 1}
                 onClick={() => selectIndex(currentIndex + 1)}
                 className="rounded-lg border border-slate-200 p-1.5 text-slate-600 hover:bg-slate-50 disabled:opacity-35"
-                aria-label="Staf seterusnya"
+                aria-label="Next staff"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>
@@ -442,23 +437,21 @@ export function Level1StaffCheck() {
 
             {/* Stamp overlay */}
             {(lastStamp || existingAnswer) && (
-              <div
-                className={`pointer-events-none absolute inset-0 flex items-center justify-center`}
-              >
+              <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
                 <div
                   className={`animate-stamp-slam rounded-xl border-4 px-5 py-2 font-mono-tech text-2xl font-black tracking-widest shadow-lg ${
                     (lastStamp ??
-                      (existingAnswer?.userChoice.startsWith('LULUS')
-                        ? 'LULUS'
-                        : 'TOLAK')) === 'LULUS'
+                      (existingAnswer?.userChoice.startsWith('APPROVE')
+                        ? 'APPROVED'
+                        : 'REJECTED')) === 'APPROVED'
                       ? 'border-kkm-green bg-white/90 text-kkm-green'
                       : 'border-kkm-red bg-white/90 text-kkm-red'
                   }`}
                 >
                   {lastStamp ??
-                    (existingAnswer?.userChoice.startsWith('LULUS')
-                      ? 'LULUS'
-                      : 'TOLAK')}
+                    (existingAnswer?.userChoice.startsWith('APPROVE')
+                      ? 'APPROVED'
+                      : 'REJECTED')}
                 </div>
               </div>
             )}
@@ -468,10 +461,10 @@ export function Level1StaffCheck() {
           <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
             <div className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2">
               <span className="text-[10px] font-bold uppercase text-slate-400">
-                Penutup Kepala
+                Hairnet / Cap
               </span>
               <div className="font-semibold text-slate-800">
-                {staff.hairnet ? 'Dipakai kemas' : 'Tiada penutup kepala'}
+                {staff.hairnet ? 'Worn properly' : 'Missing hairnet'}
               </div>
             </div>
             <div className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2">
@@ -480,15 +473,15 @@ export function Level1StaffCheck() {
               </span>
               <div className="font-semibold text-slate-800">
                 {!staff.apron
-                  ? 'Tiada apron'
+                  ? 'No apron'
                   : staff.apronClean
-                    ? 'Cerah & bersih'
-                    : 'Kotor / berminyak'}
+                    ? 'Light & clean'
+                    : 'Stained / oily'}
               </div>
             </div>
             <div className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2">
               <span className="text-[10px] font-bold uppercase text-slate-400">
-                Barang Kemas
+                Jewelry
               </span>
               <div className="font-semibold text-slate-800">
                 {staff.jewelryDetail}
@@ -496,29 +489,28 @@ export function Level1StaffCheck() {
             </div>
             <div className="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-2">
               <span className="text-[10px] font-bold uppercase text-slate-400">
-                Sarung Tangan
+                Gloves
               </span>
               <div className="font-semibold text-slate-800">
                 {staff.gloveStatus === 'clean'
-                  ? 'Pakai buang (Bersih)'
+                  ? 'Disposable (Clean)'
                   : staff.gloveStatus === 'dirty'
-                    ? 'Kotor / Tidak ditukar'
-                    : 'Tiada (Tangan kosong)'}
+                    ? 'Soiled / Unchanged'
+                    : 'None (Bare hands)'}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Right: Interactive Kad Pengendali Makanan & Stamp Controls */}
+        {/* Right: Interactive Food Handler Card & Stamp Controls */}
         <div className="flex flex-col justify-between gap-4 lg:col-span-7">
-          {/* Laminated KKM Food Handler Card */}
           <div className="overflow-hidden rounded-2xl border-2 border-kkm-teal/30 bg-white shadow-sm">
             <div className="flex items-center justify-between bg-gradient-to-r from-kkm-blue to-kkm-teal px-5 py-3 text-white">
               <div className="flex items-center gap-2">
                 <BadgeCheck className="h-5 w-5 text-teal-200" />
                 <div>
                   <div className="text-[10px] font-bold uppercase tracking-widest text-blue-100">
-                    Kad Pengendali Makanan (Simulasi KKM)
+                    Food Handler Health Card (MOH Simulation)
                   </div>
                   <div className="text-sm font-extrabold">{staff.name}</div>
                 </div>
@@ -532,7 +524,7 @@ export function Level1StaffCheck() {
                 className="inline-flex items-center gap-1 rounded-lg bg-white/15 px-2.5 py-1.5 text-xs font-bold text-white transition hover:bg-white/25"
               >
                 <FileText className="h-3.5 w-3.5" />
-                {showHealthCardModal ? 'Ringkasan' : 'Nota Kesihatan'}
+                {showHealthCardModal ? 'Summary' : 'Health Notes'}
               </button>
             </div>
 
@@ -540,25 +532,25 @@ export function Level1StaffCheck() {
               <div className="grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl border border-slate-200 bg-slate-50 p-3">
                   <div className="text-[11px] font-bold uppercase text-slate-500">
-                    Jawatan &amp; ID Staf
+                    Role &amp; Staff ID
                   </div>
                   <div className="mt-0.5 text-sm font-bold text-slate-900">
                     {staff.role}
                   </div>
                   <div className="font-mono-tech text-xs text-slate-500">
-                    No. Pendaftaran: {staff.staffCode}
+                    Reg. No.: {staff.staffCode}
                   </div>
                 </div>
 
                 <div className="rounded-xl border border-blue-200 bg-blue-50/50 p-3">
                   <div className="text-[11px] font-bold uppercase text-kkm-blue">
-                    Suntikan Tifoid (Peraturan 31)
+                    Typhoid Vaccination (Reg. 31)
                   </div>
                   <div className="mt-0.5 font-mono-tech text-sm font-extrabold text-slate-900">
-                    Sah Sehingga: {typhoidDateLabel}
+                    Valid Until: {typhoidDateLabel}
                   </div>
                   <div className="text-[11px] text-slate-600">
-                    Bandingkan dengan Tarikh Audit:{' '}
+                    Compare against Audit Date:{' '}
                     <span className="font-mono-tech font-semibold">
                       {getInspectionDateLabel()}
                     </span>
@@ -569,30 +561,29 @@ export function Level1StaffCheck() {
               <div className="grid gap-3 sm:grid-cols-2">
                 <div className="rounded-xl border border-slate-200 bg-white p-3">
                   <div className="text-[11px] font-bold uppercase text-slate-500">
-                    Sijil Latihan Pengendali (SLPM)
+                    Food Handler Training (SLPM)
                   </div>
                   <div className="mt-0.5 text-xs font-bold text-slate-800">
                     {staff.slpmCertValid
-                      ? 'Sah — Telah menghadiri kursus SLPM'
-                      : 'Tiada rekod kursus SLPM'}
+                      ? 'Valid — Certified SLPM Graduate'
+                      : 'No SLPM training record found'}
                   </div>
                 </div>
 
                 <div className="rounded-xl border border-slate-200 bg-white p-3">
                   <div className="text-[11px] font-bold uppercase text-slate-500">
-                    Pemeriksaan Luka &amp; Kulit
+                    Wound &amp; Skin Check
                   </div>
                   <div className="mt-0.5 text-xs font-bold text-slate-800">
                     {!staff.hasOpenWound
-                      ? 'Tiada luka dikesan pada tangan'
+                      ? 'No wounds detected on hands'
                       : staff.cutsCovered
-                        ? 'Luka kecil dibalut plaster kalis air + sarung tangan'
-                        : 'Luka terbuka pada jari tanpa balutan plaster!'}
+                        ? 'Minor cut sealed with blue waterproof plaster + clean glove'
+                        : 'Uncovered open wound on finger without plaster!'}
                   </div>
                 </div>
               </div>
 
-              {/* Health Notes Drawer / Box */}
               <div
                 className={`rounded-xl border p-3.5 text-xs leading-relaxed transition ${
                   showHealthCardModal
@@ -600,8 +591,8 @@ export function Level1StaffCheck() {
                     : 'border-slate-200 bg-slate-50 text-slate-700'
                 }`}
               >
-                <div className="mb-1 font-bold uppercase tracking-wide text-slate-500 text-[11px]">
-                  Catatan Pemeriksaan Fizikal &amp; Kesihatan:
+                <div className="mb-1 text-[11px] font-bold uppercase tracking-wide text-slate-500">
+                  Physical &amp; Health Inspection Notes:
                 </div>
                 {staff.healthNotes}
               </div>
@@ -618,7 +609,7 @@ export function Level1StaffCheck() {
               }`}
             >
               <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 font-bold text-sm">
+                <div className="flex items-center gap-2 text-sm font-bold">
                   {existingAnswer.isCorrect ? (
                     <CheckCircle2 className="h-5 w-5 text-kkm-green" />
                   ) : (
@@ -630,15 +621,15 @@ export function Level1StaffCheck() {
                     }
                   >
                     {existingAnswer.isCorrect
-                      ? 'Keputusan Tepat'
-                      : 'Keputusan Kurang Tepat'}
+                      ? 'Correct Decision'
+                      : 'Incorrect Decision'}
                   </span>
                 </div>
                 <span className="font-mono-tech text-xs font-bold text-slate-700">
                   {existingAnswer.pointsAwarded >= 0
                     ? `+${existingAnswer.pointsAwarded}`
                     : existingAnswer.pointsAwarded}{' '}
-                  mata
+                  pts
                 </span>
               </div>
               <p className="mt-2 text-xs leading-relaxed text-slate-700">
@@ -653,7 +644,7 @@ export function Level1StaffCheck() {
                   onClick={() => completeCurrentLevel(1, level1Staff.length)}
                   className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-kkm-blue px-4 py-2.5 text-xs font-bold text-white hover:bg-kkm-blue-dark"
                 >
-                  Selesai Tahap 1 &amp; Lihat Rumusan
+                  Complete Level 1 &amp; View Summary
                   <ArrowRight className="h-4 w-4" />
                 </button>
               )}
@@ -661,7 +652,7 @@ export function Level1StaffCheck() {
           ) : !showRejectPicker ? (
             <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
               <div className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">
-                Cop Keputusan Inspektor:
+                Inspector Decision Stamp:
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 <button
@@ -670,7 +661,7 @@ export function Level1StaffCheck() {
                   className="flex items-center justify-center gap-2 rounded-xl border-2 border-kkm-green bg-kkm-green px-4 py-4 text-sm font-extrabold tracking-wide text-white shadow-sm transition hover:bg-green-800 active:scale-[0.98]"
                 >
                   <ShieldCheck className="h-5 w-5" />
-                  LULUS MASUK DAPUR
+                  APPROVE KITCHEN ENTRY
                 </button>
 
                 <button
@@ -682,17 +673,16 @@ export function Level1StaffCheck() {
                   className="flex items-center justify-center gap-2 rounded-xl border-2 border-kkm-red bg-kkm-red px-4 py-4 text-sm font-extrabold tracking-wide text-white shadow-sm transition hover:bg-red-800 active:scale-[0.98]"
                 >
                   <ShieldAlert className="h-5 w-5" />
-                  TOLAK / KUARANTIN
+                  REJECT / QUARANTINE
                 </button>
               </div>
             </div>
           ) : (
-            /* Violation Reason Picker */
             <div className="rounded-2xl border-2 border-kkm-red/40 bg-red-50/50 p-5 shadow-sm animate-fade-in-up">
               <div className="mb-2 flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm font-extrabold text-kkm-red">
                   <AlertTriangle className="h-4 w-4" />
-                  Pilih Sebab Pelanggaran Utama:
+                  Select Primary Violation Reason:
                 </div>
                 <button
                   type="button"
@@ -702,7 +692,7 @@ export function Level1StaffCheck() {
                   }}
                   className="text-xs font-bold text-slate-500 underline hover:text-slate-800"
                 >
-                  Batal / Semak Semula
+                  Cancel / Re-check
                 </button>
               </div>
               <div className="space-y-2">
@@ -743,11 +733,11 @@ export function Level1StaffCheck() {
                 <div>
                   <h3 className="text-base font-extrabold">
                     {feedback.isCorrect
-                      ? 'Keputusan Tepat!'
-                      : 'Semakan Tidak Tepat'}
+                      ? 'Correct Decision!'
+                      : 'Incorrect Inspection Call'}
                   </h3>
                   <p className="text-xs opacity-90">
-                    Pilihan anda: {feedback.decisionLabel}
+                    Your choice: {feedback.decisionLabel}
                   </p>
                 </div>
               </div>
@@ -755,21 +745,21 @@ export function Level1StaffCheck() {
                 {feedback.pointsAwarded >= 0
                   ? `+${feedback.pointsAwarded}`
                   : feedback.pointsAwarded}{' '}
-                mata
+                pts
               </span>
             </div>
 
             <div className="space-y-4 p-6">
               {!feedback.isCorrect && (
                 <div className="rounded-xl border border-amber-200 bg-kkm-amber-soft p-3 text-xs text-slate-800">
-                  <strong className="text-kkm-amber">Jawapan Sebenar:</strong>{' '}
+                  <strong className="text-kkm-amber">Correct Verdict:</strong>{' '}
                   {feedback.correctLabel}
                 </div>
               )}
 
               <div>
                 <div className="mb-1 text-xs font-bold uppercase tracking-wide text-slate-500">
-                  Penjelasan Buku Teks KSSM
+                  KSSM Textbook Explanation
                 </div>
                 <p className="text-sm leading-relaxed text-slate-700">
                   {feedback.explanation}
@@ -777,7 +767,7 @@ export function Level1StaffCheck() {
               </div>
 
               <div className="rounded-xl bg-slate-100 px-3.5 py-2.5 font-mono-tech text-[11px] font-semibold text-kkm-blue">
-                Rujukan: {feedback.kssmReference}
+                Reference: {feedback.kssmReference}
               </div>
 
               <button
@@ -786,8 +776,8 @@ export function Level1StaffCheck() {
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-kkm-blue px-5 py-3 text-sm font-bold text-white transition hover:bg-kkm-blue-dark"
               >
                 {resolvedCount >= level1Staff.length
-                  ? 'Lihat Rumusan Tahap 1'
-                  : 'Teruskan ke Staf Seterusnya'}
+                  ? 'View Level 1 Summary'
+                  : 'Next Staff Member'}
                 <ArrowRight className="h-4 w-4" />
               </button>
             </div>

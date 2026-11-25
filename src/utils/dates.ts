@@ -1,16 +1,16 @@
-const MALAY_MONTHS = [
+const SHORT_MONTHS = [
   'Jan',
   'Feb',
-  'Mac',
+  'Mar',
   'Apr',
-  'Mei',
+  'May',
   'Jun',
   'Jul',
-  'Ogs',
+  'Aug',
   'Sep',
-  'Okt',
+  'Oct',
   'Nov',
-  'Dis',
+  'Dec',
 ];
 
 function addDays(base: Date, days: number): Date {
@@ -21,7 +21,7 @@ function addDays(base: Date, days: number): Date {
 
 export function formatMalayDate(date: Date): string {
   const day = String(date.getDate()).padStart(2, '0');
-  const month = MALAY_MONTHS[date.getMonth()];
+  const month = SHORT_MONTHS[date.getMonth()];
   const year = date.getFullYear();
   return `${day} ${month} ${year}`;
 }
@@ -49,5 +49,5 @@ export function generateCertificateCode(playerName: string): string {
     hash = (hash * 31 + playerName.charCodeAt(i)) % 9000;
   }
   const num = String(1000 + Math.abs(hash)).slice(0, 4);
-  return `KKM-SRT-${year}-${prefix}${num}`;
+  return `MOH-SRT-${year}-${prefix}${num}`;
 }

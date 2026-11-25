@@ -18,9 +18,9 @@ const STAGE_META: Record<
   'level1' | 'level2' | 'level3',
   { num: number; shortTitle: string; subtopic: string }
 > = {
-  level1: { num: 1, shortTitle: 'Semakan Pengendali', subtopic: '2.2' },
-  level2: { num: 2, shortTitle: 'Audit Dapur Komersial', subtopic: '2.1 & 2.2' },
-  level3: { num: 3, shortTitle: 'Audit Rantaian Sejuk', subtopic: '2.3' },
+  level1: { num: 1, shortTitle: 'Staff Hygiene Check', subtopic: '2.2' },
+  level2: { num: 2, shortTitle: 'Commercial Kitchen Audit', subtopic: '2.1 & 2.2' },
+  level3: { num: 3, shortTitle: 'Cold-Chain Storage Audit', subtopic: '2.3' },
 };
 
 export function GameHUD() {
@@ -92,11 +92,11 @@ export function GameHUD() {
             </div>
             <div className="flex items-center gap-1.5 text-[11px] text-slate-500">
               <span className="font-semibold text-kkm-teal">
-                Tahap {meta.num}/3: {meta.shortTitle}
+                Level {meta.num}/3: {meta.shortTitle}
               </span>
               <span className="hidden sm:inline">•</span>
               <span className="hidden font-mono-tech sm:inline">
-                Tarikh: {getInspectionDateLabel()}
+                Date: {getInspectionDateLabel()}
               </span>
             </div>
           </div>
@@ -118,9 +118,9 @@ export function GameHUD() {
                       : 'bg-slate-100 text-slate-400'
                 }`}
               >
-                <span className="font-mono-tech">T{lvl}</span>
+                <span className="font-mono-tech">L{lvl}</span>
                 <span className="text-[11px]">
-                  {lvl === 1 ? 'Staf' : lvl === 2 ? 'Dapur' : 'Stor'}
+                  {lvl === 1 ? 'Staff' : lvl === 2 ? 'Kitchen' : 'Storage'}
                 </span>
               </div>
             );
@@ -140,7 +140,7 @@ export function GameHUD() {
             {streak > 0 && (
               <div
                 className="flex items-center gap-0.5 rounded-md bg-amber-100 px-1.5 py-0.5 font-mono-tech text-xs font-bold text-kkm-amber"
-                title="Rantaian jawapan tepat berturut-turut"
+                title="Consecutive correct answers streak"
               >
                 <Flame className="h-3.5 w-3.5 fill-amber-500 text-amber-600" />
                 x{streak}
@@ -152,7 +152,7 @@ export function GameHUD() {
           {gameMode === 'practice' ? (
             <div className="flex items-center gap-1.5 rounded-xl border border-kkm-teal/30 bg-kkm-teal-soft px-2.5 py-1.5 text-xs font-bold text-kkm-teal">
               <Timer className="h-4 w-4" />
-              <span className="hidden sm:inline">Mod Latihan</span>
+              <span className="hidden sm:inline">Practice Mode</span>
             </div>
           ) : (
             <div
@@ -167,8 +167,8 @@ export function GameHUD() {
               }`}
               title={
                 isPaused
-                  ? 'Pemasa dijeda semasa membaca panduan/maklum balas'
-                  : 'Masa bonus tahap'
+                  ? 'Timer is paused while reading notes or feedback'
+                  : 'Level time bonus countdown'
               }
             >
               <svg className="h-9 w-9 -rotate-90" viewBox="0 0 40 40">
@@ -200,13 +200,13 @@ export function GameHUD() {
                 </div>
                 <div className="flex items-center gap-0.5 text-[10px] font-semibold uppercase tracking-wide">
                   {timeLeft === 0 ? (
-                    'Tamat'
+                    'Ended'
                   ) : isPaused ? (
                     <>
-                      <PauseCircle className="h-2.5 w-2.5" /> Jeda
+                      <PauseCircle className="h-2.5 w-2.5" /> Paused
                     </>
                   ) : (
-                    'Masa'
+                    'Time'
                   )}
                 </div>
               </div>
@@ -218,18 +218,18 @@ export function GameHUD() {
             type="button"
             onClick={() => setRulebookOpen(true)}
             className="flex items-center gap-1.5 rounded-xl border border-kkm-teal/30 bg-kkm-teal-soft px-2.5 py-2 text-xs font-bold text-kkm-teal transition hover:bg-kkm-teal hover:text-white"
-            title="Buka Buku Panduan Sanitasi KKM"
+            title="Open MOH Sanitation Handbook"
           >
             <BookOpen className="h-4 w-4" />
-            <span className="hidden md:inline">Panduan</span>
+            <span className="hidden md:inline">Handbook</span>
           </button>
 
           <button
             type="button"
             onClick={toggleMute}
             className="rounded-xl border border-slate-200 bg-white p-2 text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
-            aria-label={isMuted ? 'Nyahsenyap bunyi' : 'Senyapkan bunyi'}
-            title={isMuted ? 'Bunyi Dimatikan' : 'Bunyi Aktif'}
+            aria-label={isMuted ? 'Unmute audio' : 'Mute audio'}
+            title={isMuted ? 'Sound Muted' : 'Sound Active'}
           >
             {isMuted ? (
               <VolumeX className="h-4 w-4 text-slate-400" />
@@ -243,15 +243,15 @@ export function GameHUD() {
             onClick={() => {
               if (
                 window.confirm(
-                  'Kembali ke Menu Utama? Kemajuan misi semasa akan diset semula.'
+                  'Return to Main Menu? Your current inspection progress will be reset.'
                 )
               ) {
                 resetGame();
               }
             }}
             className="rounded-xl border border-slate-200 bg-white p-2 text-slate-500 transition hover:border-red-200 hover:bg-red-50 hover:text-kkm-red"
-            aria-label="Menu Utama"
-            title="Kembali ke Menu Utama"
+            aria-label="Main Menu"
+            title="Return to Main Menu"
           >
             <Home className="h-4 w-4" />
           </button>
@@ -261,8 +261,8 @@ export function GameHUD() {
       {/* Timeout Banner */}
       {gameMode === 'timed' && timeLeft === 0 && (
         <div className="border-t border-red-200 bg-kkm-red-soft px-4 py-1.5 text-center text-xs font-semibold text-kkm-red">
-          Masa bonus tamat! Anda masih boleh menghabiskan baki pemeriksaan untuk
-          markah ketepatan akademik (tanpa bonus masa).
+          Time bonus expired! You can still finish inspecting the remaining items for
+          full academic accuracy credit (without time bonus points).
         </div>
       )}
     </header>

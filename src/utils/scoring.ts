@@ -12,9 +12,9 @@ export const TIME_BONUS_PER_SECOND = 2;
 export const LEVEL_DURATION_SECONDS = 120;
 
 export const SUBTOPIC_TITLES: Record<SubtopicCode, string> = {
-  '2.1': 'Amalan Kebersihan di Dapur',
-  '2.2': 'Pengendalian Makanan & Kebersihan Diri',
-  '2.3': 'Penyimpanan Makanan & Rantaian Sejuk',
+  '2.1': 'Kitchen Hygiene Practices',
+  '2.2': 'Food Handler Hygiene & Attire',
+  '2.3': 'Food Storage, Cold-Chain & FIFO',
 };
 
 /**
@@ -48,7 +48,7 @@ export function calculateTimeBonus(timeLeft: number, isPracticeMode: boolean): n
 }
 
 /**
- * Computes official KKM inspection grade strictly from academic accuracy percentage
+ * Computes official MOH inspection grade strictly from academic accuracy percentage
  * so careful students who read explanations are never penalized by speed metrics.
  */
 export function calculateGrade(correctCount: number, totalItems: number): GradeInfo {
@@ -58,8 +58,8 @@ export function calculateGrade(correctCount: number, totalItems: number): GradeI
   if (accuracyPercent >= 85) {
     return {
       grade: 'A',
-      title: 'Gred A — Inspektor Cemerlang',
-      subtitle: 'Premis Bintang 5 • Mematuhi Piawaian Sanitasi KKM',
+      title: 'Grade A — Distinguished Inspector',
+      subtitle: '5-Star Food Premises • Full Compliance with MOH Sanitation Standards',
       badgeColorClass: 'bg-kkm-green text-white border-kkm-green',
       accuracyPercent,
     };
@@ -68,8 +68,8 @@ export function calculateGrade(correctCount: number, totalItems: number): GradeI
   if (accuracyPercent >= 60) {
     return {
       grade: 'B',
-      title: 'Gred B — Lulus Dengan Syarat',
-      subtitle: 'Amaran Penambahbaikan • Perlu Semakan Semula Beberapa Piawaian',
+      title: 'Grade B — Pass with Conditions',
+      subtitle: 'Improvement Notice • Several Sanitation Rules Need Review',
       badgeColorClass: 'bg-kkm-amber text-white border-kkm-amber',
       accuracyPercent,
     };
@@ -77,8 +77,8 @@ export function calculateGrade(correctCount: number, totalItems: number): GradeI
 
   return {
     grade: 'C',
-    title: 'Gred C — Gagal Pemeriksaan',
-    subtitle: 'Notis Penutupan Premis di bawah Seksyen 11, Akta Makanan 1983',
+    title: 'Grade C — Inspection Failed',
+    subtitle: 'Premises Closure Order under Section 11, Food Act 1983',
     badgeColorClass: 'bg-kkm-red text-white border-kkm-red',
     accuracyPercent,
   };

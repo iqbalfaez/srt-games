@@ -4,16 +4,16 @@ import { playClickSound } from '../../utils/sound';
 
 const LEVEL_NAMES: Record<1 | 2 | 3, { title: string; nextCta: string }> = {
   1: {
-    title: 'Tahap 1 Selesai: Semakan Pengendali Makanan',
-    nextCta: 'Teruskan ke Tahap 2: Audit Dapur Komersial',
+    title: 'Level 1 Complete: Morning Shift Staff Checkpoint',
+    nextCta: 'Proceed to Level 2: Commercial Kitchen Audit',
   },
   2: {
-    title: 'Tahap 2 Selesai: Audit Visual Dapur Komersial',
-    nextCta: 'Teruskan ke Tahap 3: Audit Rantaian Sejuk & Stor',
+    title: 'Level 2 Complete: Interactive Commercial Kitchen Audit',
+    nextCta: 'Proceed to Level 3: Cold-Chain & Storage Audit',
   },
   3: {
-    title: 'Tahap 3 Selesai: Audit Penyimpanan Makanan',
-    nextCta: 'Jana Laporan Audit & Sijil Inspektor Muda',
+    title: 'Level 3 Complete: Food Storage & FIFO Audit',
+    nextCta: 'Generate Audit Report & Inspector Certificate',
   },
 };
 
@@ -32,7 +32,7 @@ export function LevelRecapModal() {
         <div className="bg-gradient-to-r from-kkm-blue to-kkm-teal px-6 py-5 text-white">
           <div className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold">
             <Award className="h-3.5 w-3.5" />
-            Rumusan Tahap {recap.level} daripada 3
+            Stage {recap.level} of 3 Summary
           </div>
           <h2 className="text-lg font-extrabold leading-snug">{meta.title}</h2>
         </div>
@@ -42,30 +42,30 @@ export function LevelRecapModal() {
             <div className="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-center">
               <div className="mb-1 flex items-center justify-center gap-1 text-xs font-semibold text-slate-500">
                 <CheckCircle2 className="h-4 w-4 text-kkm-green" />
-                Ketepatan
+                Accuracy
               </div>
               <div className="font-mono-tech text-2xl font-extrabold text-slate-900">
                 {recap.correctCount}/{recap.totalCount}
               </div>
-              <div className="text-xs font-semibold text-kkm-teal">{pct}% Tepat</div>
+              <div className="text-xs font-semibold text-kkm-teal">{pct}% Correct</div>
             </div>
 
             <div className="rounded-xl border border-slate-200 bg-slate-50 p-3.5 text-center">
               <div className="mb-1 flex items-center justify-center gap-1 text-xs font-semibold text-slate-500">
                 <Clock className="h-4 w-4 text-kkm-amber" />
-                Bonus Masa
+                Time Bonus
               </div>
               <div className="font-mono-tech text-2xl font-extrabold text-kkm-amber">
                 +{recap.timeBonus}
               </div>
-              <div className="text-xs text-slate-500">Markah Inspektor</div>
+              <div className="text-xs text-slate-500">Inspector Points</div>
             </div>
           </div>
 
           <p className="rounded-xl bg-blue-50/70 p-3 text-xs leading-relaxed text-slate-700">
             {pct >= 80
-              ? 'Prestasi cemerlang! Pemeriksaan anda menepati garis panduan KSSM SRT Tingkatan 5 Bab 2.'
-              : 'Usaha yang baik! Jangan lupa semak Senarai Semak Ulang Kaji pada laporan akhir nanti untuk memperbaiki kesilapan.'}
+              ? 'Outstanding work! Your inspection aligns strongly with KSSM SRT Form 5 Chapter 2 sanitation standards.'
+              : 'Good effort! Be sure to review the Revision Checklist on the final audit report to master every rule.'}
           </p>
 
           <button

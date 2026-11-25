@@ -64,7 +64,7 @@ const initialGameState = {
   currentStage: 'menu' as GameStage,
   gameMode: 'timed' as GameMode,
   playerName: '',
-  playerClass: '5 SRT',
+  playerClass: 'Form 5 SRT',
   score: 0,
   streak: 0,
   bestStreak: 0,
@@ -89,7 +89,7 @@ export const useGameStore = create<GameStoreState>()(
           ...initialGameState,
           isMuted: get().isMuted,
           playerName: name.trim(),
-          playerClass: playerClass.trim() || '5 SRT',
+          playerClass: playerClass.trim() || 'Form 5 SRT',
           gameMode: mode,
           currentStage: 'level1',
           timeLeft: LEVEL_DURATION_SECONDS,
@@ -99,7 +99,6 @@ export const useGameStore = create<GameStoreState>()(
 
       processAnswer: (payload) => {
         const state = get();
-        // Prevent double-scoring an already resolved item
         if (state.answers[payload.itemId]) {
           return 0;
         }
@@ -242,7 +241,7 @@ export const useGameStore = create<GameStoreState>()(
       setActiveModalHotspot: (hotspot) => set({ activeModalHotspot: hotspot }),
     }),
     {
-      name: 'inspektor-dapur-kkm-storage-v1',
+      name: 'moh-kitchen-inspector-storage-en-v2',
       partialize: (state) => ({
         currentStage: state.currentStage,
         gameMode: state.gameMode,

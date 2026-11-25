@@ -23,7 +23,7 @@ export function MainMenu() {
   const setRulebookOpen = useGameStore((s) => s.setRulebookOpen);
 
   const [name, setName] = useState(savedName);
-  const [playerClass, setPlayerClass] = useState(savedClass || '5 SRT');
+  const [playerClass, setPlayerClass] = useState(savedClass || 'Form 5 SRT');
   const [mode, setMode] = useState<GameMode>('timed');
 
   const canStart = name.trim().length >= 2;
@@ -46,16 +46,16 @@ export function MainMenu() {
             </div>
             <div>
               <p className="text-[11px] font-bold uppercase tracking-wider text-kkm-teal">
-                Simulasi Pendidikan KSSM • Sains Rumah Tangga Tingkatan 5
+                KSSM Educational Simulation • Home Science (SRT) Form 5
               </p>
               <h1 className="text-lg font-extrabold tracking-tight text-kkm-blue sm:text-xl">
-                Inspektor Dapur KKM: Misi Sanitasi SRT T5
+                MOH Kitchen Inspector: Food Sanitation Mission
               </h1>
             </div>
           </div>
           <div className="flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1.5 font-mono-tech text-xs font-semibold text-slate-700">
             <ClipboardCheck className="h-4 w-4 text-kkm-teal" />
-            Tarikh Audit: {getInspectionDateLabel()}
+            Audit Date: {getInspectionDateLabel()}
           </div>
         </div>
 
@@ -66,16 +66,16 @@ export function MainMenu() {
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
               <div className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-kkm-teal-soft px-3 py-1 text-xs font-bold text-kkm-teal">
                 <GraduationCap className="h-3.5 w-3.5" />
-                Bab 2: Sanitasi dalam Penyediaan dan Penyimpanan Makanan
+                Chapter 2: Sanitation in Food Preparation and Storage
               </div>
               <h2 className="mb-2 text-2xl font-extrabold leading-tight text-slate-900">
-                Jalankan Pemeriksaan Premis Makanan Mengikut Piawaian KKM
+                Conduct a Commercial Kitchen Audit Under MOH Standards
               </h2>
               <p className="text-sm leading-relaxed text-slate-600">
-                Anda ditugaskan sebagai <strong>Inspektor Kesihatan Muda</strong> untuk
-                mengaudit sebuah dapur komersial melalui 3 tahap pemeriksaan interaktif.
-                Kenal pasti pelanggaran kebersihan, pastikan rantaian sejuk dipatuhi,
-                dan peroleh <strong>Sijil Inspektor Muda</strong>!
+                You are assigned as a <strong>Junior Health Inspector</strong> to audit a
+                commercial kitchen across 3 interactive stages. Identify hygiene
+                violations, verify cold-chain storage and FIFO rules, and earn your{' '}
+                <strong>Junior Kitchen Inspector Certificate</strong>!
               </p>
 
               {/* Subtopic Badges */}
@@ -88,10 +88,10 @@ export function MainMenu() {
                     <UserCheck className="h-4 w-4 text-kkm-blue" />
                   </div>
                   <div className="text-xs font-bold text-slate-900">
-                    Tahap 1: Pos Pengendali
+                    Level 1: Staff Checkpoint
                   </div>
                   <p className="mt-1 text-[11px] leading-relaxed text-slate-600">
-                    Audit pakaian, kebersihan diri &amp; kad Suntikan Tifoid (6 staf).
+                    Inspect attire, personal hygiene &amp; Typhoid vaccination cards (6 staff).
                   </p>
                 </div>
 
@@ -103,10 +103,10 @@ export function MainMenu() {
                     <UtensilsCrossed className="h-4 w-4 text-kkm-teal" />
                   </div>
                   <div className="text-xs font-bold text-slate-900">
-                    Tahap 2: Audit Dapur
+                    Level 2: Kitchen Audit
                   </div>
                   <p className="mt-1 text-[11px] leading-relaxed text-slate-600">
-                    Imbas 8 titik pemeriksaan merentas 4 zon dapur komersial.
+                    Scan 8 inspection pins across 4 commercial kitchen zones.
                   </p>
                 </div>
 
@@ -118,10 +118,10 @@ export function MainMenu() {
                     <ThermometerSnowflake className="h-4 w-4 text-kkm-amber" />
                   </div>
                   <div className="text-xs font-bold text-slate-900">
-                    Tahap 3: Rantaian Sejuk
+                    Level 3: Cold-Chain Audit
                   </div>
                   <p className="mt-1 text-[11px] leading-relaxed text-slate-600">
-                    Audit Chiller, Freezer, Stor Kering, suhu &amp; peraturan FIFO.
+                    Audit Chiller, Freezer, Dry Store temperatures &amp; FIFO rules.
                   </p>
                 </div>
               </div>
@@ -130,31 +130,31 @@ export function MainMenu() {
             {/* Grading Criteria Preview */}
             <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
               <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">
-                Piawaian Penggredan Premis (Berdasarkan Ketepatan Audit)
+                Premises Grading Standards (Based on Audit Accuracy)
               </h3>
               <div className="grid gap-2.5 sm:grid-cols-3 text-xs">
                 <div className="rounded-xl border border-green-200 bg-kkm-green-soft p-3">
                   <div className="font-mono-tech font-extrabold text-kkm-green">
-                    GRED A (≥ 85%)
+                    GRADE A (≥ 85%)
                   </div>
                   <div className="mt-0.5 text-slate-700">
-                    Inspektor Cemerlang / Premis Bintang 5
+                    Distinguished Inspector / 5-Star Premises
                   </div>
                 </div>
                 <div className="rounded-xl border border-amber-200 bg-kkm-amber-soft p-3">
                   <div className="font-mono-tech font-extrabold text-kkm-amber">
-                    GRED B (60% – 84%)
+                    GRADE B (60% – 84%)
                   </div>
                   <div className="mt-0.5 text-slate-700">
-                    Lulus / Amaran Penambahbaikan
+                    Pass / Improvement Notice Issued
                   </div>
                 </div>
                 <div className="rounded-xl border border-red-200 bg-kkm-red-soft p-3">
                   <div className="font-mono-tech font-extrabold text-kkm-red">
-                    GRED C (&lt; 60%)
+                    GRADE C (&lt; 60%)
                   </div>
                   <div className="mt-0.5 text-slate-700">
-                    Gagal / Premis Ditutup (Seksyen 11)
+                    Failed / Closure Order (Section 11)
                   </div>
                 </div>
               </div>
@@ -171,7 +171,7 @@ export function MainMenu() {
                 <div className="mb-4 flex items-center gap-2 border-b border-slate-100 pb-3">
                   <Sparkles className="h-5 w-5 text-kkm-teal" />
                   <h2 className="text-base font-extrabold text-slate-900">
-                    Pendaftaran Inspektor Muda
+                    Junior Inspector Registration
                   </h2>
                 </div>
 
@@ -181,14 +181,14 @@ export function MainMenu() {
                       htmlFor="playerName"
                       className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-700"
                     >
-                      Nama Murid <span className="text-kkm-red">*</span>
+                      Student Name <span className="text-kkm-red">*</span>
                     </label>
                     <input
                       id="playerName"
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="Contoh: Aisyah binti Ahmad"
+                      placeholder="e.g. Aisyah Ahmad"
                       maxLength={50}
                       required
                       className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-kkm-blue focus:bg-white focus:outline-none focus:ring-2 focus:ring-kkm-blue/20"
@@ -200,14 +200,14 @@ export function MainMenu() {
                       htmlFor="playerClass"
                       className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-700"
                     >
-                      Tingkatan / Kelas
+                      Form / Class
                     </label>
                     <input
                       id="playerClass"
                       type="text"
                       value={playerClass}
                       onChange={(e) => setPlayerClass(e.target.value)}
-                      placeholder="5 SRT"
+                      placeholder="Form 5 SRT"
                       maxLength={20}
                       className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:border-kkm-blue focus:bg-white focus:outline-none focus:ring-2 focus:ring-kkm-blue/20"
                     />
@@ -216,7 +216,7 @@ export function MainMenu() {
                   {/* Mode Toggle */}
                   <div>
                     <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-slate-700">
-                      Mod Pemeriksaan
+                      Inspection Mode
                     </span>
                     <div className="grid grid-cols-2 gap-2.5">
                       <button
@@ -233,10 +233,10 @@ export function MainMenu() {
                       >
                         <div className="flex items-center gap-1.5 text-xs font-bold text-kkm-blue">
                           <Clock className="h-3.5 w-3.5" />
-                          Misi Bermasa
+                          Timed Mission
                         </div>
                         <p className="mt-0.5 text-[11px] text-slate-600">
-                          120s/tahap + bonus masa (dijeda semasa baca nota).
+                          120s/level + time bonus (auto-pauses while reading notes).
                         </p>
                       </button>
 
@@ -254,10 +254,10 @@ export function MainMenu() {
                       >
                         <div className="flex items-center gap-1.5 text-xs font-bold text-kkm-teal">
                           <BookOpen className="h-3.5 w-3.5" />
-                          Mod Latihan
+                          Practice Mode
                         </div>
                         <p className="mt-0.5 text-[11px] text-slate-600">
-                          Tiada pemasa. Sesuai untuk ulang kaji kelas.
+                          No timer. Ideal for classroom revision &amp; study.
                         </p>
                       </button>
                     </div>
@@ -273,7 +273,7 @@ export function MainMenu() {
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-kkm-blue px-5 py-3.5 text-sm font-extrabold tracking-wide text-white shadow-md transition hover:bg-kkm-blue-dark disabled:cursor-not-allowed disabled:bg-slate-300 disabled:shadow-none"
                 >
                   <Play className="h-4 w-4 fill-current" />
-                  MULA PEMERIKSAAN
+                  START INSPECTION
                 </button>
 
                 <button
@@ -285,12 +285,12 @@ export function MainMenu() {
                   className="flex w-full items-center justify-center gap-2 rounded-xl border border-kkm-teal/35 bg-kkm-teal-soft px-5 py-3 text-sm font-bold text-kkm-teal transition hover:bg-kkm-teal hover:text-white"
                 >
                   <BookOpen className="h-4 w-4" />
-                  Buku Panduan Sanitasi KKM
+                  MOH Sanitation Handbook
                 </button>
 
                 <p className="pt-1 text-center text-[11px] text-slate-400">
-                  Nama anda akan dipaparkan pada Laporan Audit &amp; Sijil Inspektor
-                  Muda yang boleh dicetak.
+                  Your name will appear on the final Audit Report &amp; printable
+                  Junior Inspector Certificate.
                 </p>
               </div>
             </form>
